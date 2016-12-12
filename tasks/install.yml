@@ -1,0 +1,60 @@
+---
+
+- name: NGINX | Installing dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ required_libs }}"
+  tags:
+    skip_ansible_lint
+
+- name: NGINX | Check nginx version
+  command: nginx -v
+  register: nginx_check
+  changed_when: false
+  ignore_errors: true
+
+- name: NGINX | Download headers-more module
+  get_url:
+    url: "{{ headers_more_url }}"
+    dest: /tmp
+    validate_certs: no
+  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+
+- name: NGINX | Untar headers-more
+  unarchive:
+    copy: no
+    src: /tmp/headers-more-nginx-module-{{ headers_more_version }}.tar.gz
+    dest: /tmp
+  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+
+- name: NGINX | Download nginx
+  get_url:
+    url: "{{ nginx_url }}"
+    dest: /tmp
+  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+
+- name: NGINX | Untar nginx
+  unarchive:
+    copy: no
+    src: /tmp/nginx-{{ nginx_version }}.tar.gz
+    dest: /tmp
+  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+
+- name: NGINX | Install nginx
+  command: "chdir=/tmp/nginx-{{ nginx_version }} {{item}}"
+  with_items:
+    - ./configure
+        --prefix={{ nginx_install_bin_path }}
+        --user={{ nginx_user }}
+        --group={{ nginx_group }}
+        --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
+        --conf-path={{ nginx_conf }}
+        --error-log-path={{ nginx_error_log }}
+        --http-log-path={{ nginx_access_log }}
+        --pid-path=/var/run/nginx.pid
+        --lock-path=/var/lock/nginx.lock
+    - make
+    - make install
+  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  notify: restart nginx
