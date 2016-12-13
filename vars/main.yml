@@ -1,0 +1,7 @@
+required_libs:
+  - build-essential
+  - libpcre3-dev
+  - libssl-dev
+
+nginx_url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
+headers_more_url: https://github.com/openresty/headers-more-nginx-module/archive/v{{ headers_more_version }}.tar.gz
