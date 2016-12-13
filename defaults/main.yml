@@ -1,0 +1,22 @@
+nginx_version: 1.10.2
+nginx_user: nginx
+nginx_group: nginx
+nginx_groups: []
+
+# start on boot
+nginx_service_enabled: yes
+# current state: started, stopped
+nginx_service_state: started
+
+nginx_workers: auto
+nginx_connections: 2500
+nginx_keepalive_timeout: 65
+nginx_keepalive_requests: 100000
+nginx_log_path: "/var/log/nginx/"
+nginx_access_log: "{{ nginx_log_path }}access.log"
+nginx_error_log: "{{ nginx_log_path }}error.log"
+nginx_conf_dir: "/etc/nginx/"
+nginx_conf: "{{ nginx_conf_dir }}nginx.conf"
+
+nginx_install_bin_path: "/usr"
+headers_more_version: 0.27
