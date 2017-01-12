@@ -2,8 +2,8 @@ worker_processes {{ nginx_workers }};
 error_log  {{ nginx_error_log }};
 
 events {
-        worker_connections {{ nginx_connections }};
-        use epoll;
+    worker_connections {{ nginx_connections }};
+    use epoll;
 }
 
 http {
