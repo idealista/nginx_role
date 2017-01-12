@@ -1,5 +1,5 @@
 ---
 galaxy_info:
-  company: Idealista
+  company: Idealista S.A.
+  description: Nginx server
   min_ansible_version: 2.2
-  description: Install Nginx server

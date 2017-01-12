@@ -4,7 +4,6 @@
     rotate 7
     size 500M
     compress
-    delaycompress
     notifempty
     create 644 nginx adm
     sharedscripts
