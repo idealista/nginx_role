@@ -19,27 +19,27 @@
     url: "{{ headers_more_url }}"
     dest: /tmp
     validate_certs: no
-  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
 
 - name: NGINX | Untar headers-more
   unarchive:
     copy: no
     src: /tmp/headers-more-nginx-module-{{ headers_more_version }}.tar.gz
     dest: /tmp
-  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
 
 - name: NGINX | Download nginx
   get_url:
     url: "{{ nginx_url }}"
     dest: /tmp
-  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
 
 - name: NGINX | Untar nginx
   unarchive:
     copy: no
     src: /tmp/nginx-{{ nginx_version }}.tar.gz
     dest: /tmp
-  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
 
 - name: NGINX | Install nginx
   command: "chdir=/tmp/nginx-{{ nginx_version }} {{item}}"
@@ -53,9 +53,16 @@
         --conf-path={{ nginx_conf }}
         --error-log-path={{ nginx_error_log }}
         --http-log-path={{ nginx_access_log }}
-        --pid-path=/var/run/nginx.pid
+        --pid-path={{ nginx_pid_path }}nginx.pid
         --lock-path=/var/lock/nginx.lock
     - make
     - make install
-  when: 'nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  notify: restart nginx
+
+- name: NGINX | Copy Daemon script
+  template:
+    src: nginx.service.j2
+    dest: /lib/systemd/system/nginx.service
+    mode: 0644
   notify: restart nginx

@@ -1,0 +1,13 @@
+{{ nginx_log_path }}*.log {
+    daily
+    missingok
+    rotate 7
+    size 500M
+    compress
+    notifempty
+    create 644 {{ nginx_user }} {{ nginx_group }}
+    sharedscripts
+    postrotate
+        [ -f {{ nginx_pid_path }}nginx.pid ] && kill -USR1 `cat {{ nginx_pid_path }}nginx.pid`
+    endscript
+}
