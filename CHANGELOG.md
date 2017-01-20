@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased]
 
 ## [1.0.2](https://github.com/idealista-tech/nginx-role/tree/1.0.2) (2017-01-20)
-[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/v1.0.1...v1.0.2)
+[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.0.1...1.0.2)
 This version could break the service if same version is installed. Please use **force_reinstall: true** parameter to avoid it.
 
 ### Added
@@ -16,7 +16,7 @@ This version could break the service if same version is installed. Please use **
 - *[#1](https://github.com/idealista-tech/nginx-role/issues/1) Fix enable/disable service* @jmonterrubio
 
 ##[1.0.1](https://github.com/idealista-tech/nginx-role/tree/1.0.1) (2017-01-12)
-[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/v1.0.0...v1.0.1)
+[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.0.0...1.0.1)
 ### Added
 - *Update doc* @jmonterrubio
 
