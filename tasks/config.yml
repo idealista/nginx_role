@@ -5,9 +5,25 @@
     groups: "{{ nginx_groups|join(',') }}"
     append: yes
 
+- name: NGINX | Create pid directory
+  file:
+    path: "{{ nginx_pid_path }}"
+    state: directory
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    recurse: yes
+
+- name: NGINX | Create log directory
+  file:
+    path: "{{ nginx_log_path }}"
+    state: directory
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    recurse: yes
+
 - name: NGINX | Update conf directory owner
   file:
-    name: "{{ nginx_conf_dir }}"
+    name: "{{ nginx_conf_path }}"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
 
@@ -22,14 +38,9 @@
   with_items:
     - "etc/nginx/nginx.conf"
 
-- name: NGINX | Copy logrotate config
-  copy:
-    src: logrotate
-    dest: /etc/logrotate.d/nginx
-
 - name: NGINX | Create servers directory
   file:
-    path: "{{ nginx_conf_dir }}{{ item }}"
+    path: "{{ nginx_conf_path }}{{ item }}"
     state: directory
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
@@ -37,9 +48,10 @@
     - sites-available
     - sites-enabled
 
-- name: NGINX | Copy Daemon script
-  copy:
-    src: nginx.service
-    dest: /lib/systemd/system/
-    mode: 0755
-  notify: restart nginx
+- name: NGINX | Copy logrotate config
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/nginx
+    mode: 0644
+    owner: root
+    group: root
