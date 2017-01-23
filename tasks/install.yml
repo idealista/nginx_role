@@ -28,6 +28,20 @@
     dest: /tmp
   when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
 
+- name: NGINX | Download lua module
+  get_url:
+    url: "{{ lua_module_url }}"
+    dest: /tmp
+    validate_certs: no
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+
+- name: NGINX | Untar lua module
+  unarchive:
+    copy: no
+    src: /tmp/lua-nginx-module-{{ lua_module_version }}.tar.gz
+    dest: /tmp
+  when: 'force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+
 - name: NGINX | Download nginx
   get_url:
     url: "{{ nginx_url }}"
@@ -50,6 +64,7 @@
         --group={{ nginx_group }}
         --with-http_stub_status_module
         --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
+        --add-module=/tmp/lua-nginx-module-{{ lua_module_version }}
         --conf-path={{ nginx_conf }}
         --error-log-path={{ nginx_error_log }}
         --http-log-path={{ nginx_access_log }}

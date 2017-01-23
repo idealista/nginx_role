@@ -1,7 +1,13 @@
 ---
 
 - name: restart nginx
-  service:
+  systemd:
     name: nginx
     state: restarted
+  when: nginx_service_state != 'stopped'
+
+- name: reload nginx
+  systemd:
+    name: nginx
+    state: reloaded
   when: nginx_service_state != 'stopped'

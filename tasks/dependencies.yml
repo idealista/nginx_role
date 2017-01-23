@@ -1,0 +1,35 @@
+---
+
+- name: NGINX | Installing dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ lua_dependencies }}"
+  tags:
+    skip_ansible_lint
+
+- name: NGINX | Check lua version
+  command: lua -v
+  register: lua_check
+  changed_when: false
+  ignore_errors: true
+
+- name: NGINX | Download lua
+  get_url:
+    url: "{{ lua_url }}"
+    dest: /tmp
+    validate_certs: no
+  when: 'force_reinstall or lua_check|failed or "Lua {{ lua_version }}" not in lua_check.stderr'
+
+- name: NGINX | Untar lua
+  unarchive:
+    copy: no
+    src: /tmp/lua-{{ lua_version }}.tar.gz
+    dest: /tmp
+  when: 'force_reinstall or lua_check|failed or "Lua {{ lua_version }}" not in lua_check.stderr'
+
+- name: NGINX | Build lua
+  command: "chdir=/tmp/lua-{{ lua_version }} {{item}}"
+  with_items:
+    - make linux install
+  when: 'force_reinstall or lua_check|failed or "Lua {{ lua_version }}" not in lua_check.stderr'

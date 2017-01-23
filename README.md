@@ -2,7 +2,7 @@
 
 # Nginx Ansible role
 
-This ansible role installs a Nginx server in a debian environment. The server is installed using the sources adding the headers-more module.
+This ansible role installs a Nginx server in a debian environment. The server is installed using the sources adding the headers-more module and lua module. Also installs [lua](http://www.lua.org/) needed for prometheus metrics.
 
 - [Getting Started](#getting-started)
 	- [Prerequisities](#prerequisities)

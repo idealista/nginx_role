@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased]
+### Added
+- *Add prometheus metric to monitor nginx server* @jmonterrubio
 
 ## [1.0.2](https://github.com/idealista-tech/nginx-role/tree/1.0.2) (2017-01-20)
 [Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.0.1...1.0.2)
