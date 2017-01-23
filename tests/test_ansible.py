@@ -18,11 +18,27 @@ def test_nginx_user(User, Group, AnsibleDefaults):
 
 
 def test_nginx_conf(File, User, Group, AnsibleDefaults):
-    conf_dir = File(AnsibleDefaults["nginx_conf_dir"])
+    conf_dir = File(AnsibleDefaults["nginx_conf_path"])
     assert conf_dir.exists
     assert conf_dir.is_directory
     assert conf_dir.user == AnsibleDefaults["nginx_user"]
     assert conf_dir.group == AnsibleDefaults["nginx_group"]
+
+
+def test_nginx_log(File, User, Group, AnsibleDefaults):
+    log_dir = File(AnsibleDefaults["nginx_log_path"])
+    assert log_dir.exists
+    assert log_dir.is_directory
+    assert log_dir.user == AnsibleDefaults["nginx_user"]
+    assert log_dir.group == AnsibleDefaults["nginx_group"]
+
+
+def test_nginx_pid(File, User, Group, AnsibleDefaults):
+    pid_dir = File(AnsibleDefaults["nginx_pid_path"])
+    assert pid_dir.exists
+    assert pid_dir.is_directory
+    assert pid_dir.user == AnsibleDefaults["nginx_user"]
+    assert pid_dir.group == AnsibleDefaults["nginx_group"]
 
 
 def test_nginx_executable(File, Command, AnsibleDefaults):

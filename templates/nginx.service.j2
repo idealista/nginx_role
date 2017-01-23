@@ -4,13 +4,13 @@ After=network.target
 
 [Service]
 Type=forking
-PIDFile=/var/run/nginx.pid
 ExecStartPre=/usr/sbin/nginx -t -q -g 'daemon on; master_process on;'
 ExecStart=/usr/sbin/nginx -g 'daemon on; master_process on;'
 ExecReload=/usr/sbin/nginx -g 'daemon on; master_process on;' -s reload
-ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /var/run/nginx.pid
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile {{ nginx_pid_path }}nginx.pid
 TimeoutStopSec=5
 KillMode=mixed
+User=root
 
 [Install]
 WantedBy=multi-user.target
