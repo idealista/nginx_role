@@ -21,5 +21,11 @@ nginx_conf: "{{ nginx_conf_path }}nginx.conf"
 
 nginx_install_bin_path: "/usr"
 headers_more_version: 0.27
+lua_module_version: 0.10.7
+
+lua_version: 5.1.5
+
+prometheus_metric_port: 9145
+prometheus_metric_role: nginx
 
 force_reinstall: false
