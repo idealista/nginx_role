@@ -5,3 +5,10 @@ required_libs:
 
 nginx_url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
 headers_more_url: https://github.com/openresty/headers-more-nginx-module/archive/v{{ headers_more_version }}.tar.gz
+lua_module_url: https://github.com/openresty/lua-nginx-module/archive/v{{ lua_module_version }}.tar.gz
+
+lua_dependencies:
+  - build-essential
+  - libreadline-dev
+  - lib32ncurses5-dev
+lua_url: http://www.lua.org/ftp/lua-{{ lua_version }}.tar.gz
