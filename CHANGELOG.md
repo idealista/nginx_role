@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased]
 
+## [1.2.0](https://github.com/idealista-tech/nginx-role/tree/1.2.0) (2017-02-27)
+[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.1.0...1.2.0)
+
+### Added
+- *[#7](https://github.com/idealista-tech/zookeeper-role/issues/7) Configure servers from files out of the role* @jmonterrubio
+
 ## [1.1.0](https://github.com/idealista-tech/nginx-role/tree/1.1.0) (2017-01-24)
 [Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.0.2...1.1.0)
 
