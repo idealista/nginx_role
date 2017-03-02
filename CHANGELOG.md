@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased]
 
+### Added
+- *[#9](https://github.com/idealista-tech/nginx-role/issues/9) Add max body size configurable* @jmonterrubio
+
 ## [1.1.0](https://github.com/idealista-tech/nginx-role/tree/1.1.0) (2017-01-24)
 [Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.0.2...1.1.0)
 
