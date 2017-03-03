@@ -38,7 +38,7 @@
 
 - name: NGINX | Create config directories
   file:
-    path: "{{ nginx_conf_path }}{{ item }}"
+    path: "{{ nginx_conf_path }}/{{ item }}"
     state: directory
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
@@ -58,21 +58,21 @@
 - name: NGINX | Copy prometheus lib
   copy:
     src: prometheus.lua
-    dest: "{{ nginx_conf_path }}plugins/prometheus.lua"
+    dest: "{{ nginx_conf_path }}/plugins/prometheus.lua"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
 
 - name: NGINX | Copy prometheus metric server conf
   template:
     src: prometheus.j2
-    dest: "{{ nginx_conf_path }}sites-available/prometheus"
+    dest: "{{ nginx_conf_path }}/sites-available/prometheus"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
 
 - name: NGINX | Enable prometheus metric server
   file:
-    src: "{{ nginx_conf_path }}sites-available/prometheus"
-    dest: "{{ nginx_conf_path }}sites-enabled/prometheus"
+    src: "{{ nginx_conf_path }}/sites-available/prometheus"
+    dest: "{{ nginx_conf_path }}/sites-enabled/prometheus"
     state: link
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
@@ -81,7 +81,7 @@
 - name: NGINX | Copy servers files
   copy:
     src: "{{ item }}"
-    dest: "{{ nginx_conf_path }}sites-available/{{ item | basename }}"
+    dest: "{{ nginx_conf_path }}/sites-available/{{ item | basename }}"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
     mode: 0640
@@ -91,7 +91,7 @@
 - name: NGINX | Copy servers templates
   template:
     src: "{{ item }}"
-    dest: "{{ nginx_conf_path }}sites-available/{{ item | basename }}"
+    dest: "{{ nginx_conf_path }}/sites-available/{{ item | basename }}"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
     mode: 0640
@@ -100,8 +100,8 @@
 
 - name: NGINX | Enable servers templates
   file:
-    src: "{{ nginx_conf_path }}sites-available/{{ item | basename }}"
-    dest: "{{ nginx_conf_path }}sites-enabled/{{ item | basename }}"
+    src: "{{ nginx_conf_path }}/sites-available/{{ item | basename }}"
+    dest: "{{ nginx_conf_path }}/sites-enabled/{{ item | basename }}"
     state: link
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
