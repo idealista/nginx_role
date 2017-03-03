@@ -12,6 +12,8 @@ http {
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
 
+    client_max_body_size {{ nginx_client_max_body_size }};
+
     include  mime.types;
 
     default_type  application/octet-stream;
