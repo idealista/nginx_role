@@ -1,9 +1,21 @@
 ---
 
-- include: dependencies.yml
+- name: NGINX | Dependencies
+  include: dependencies.yml
+  tags:
+    - dependencies
 
-- include: install.yml
+- name: NGINX | Install
+  include: install.yml
+  tags:
+    - install
 
-- include: config.yml
+- name: NGINX | Configure
+  include: config.yml
+  tags:
+    - configure
 
-- include: service.yml
+- name: NGINX | Service
+  include: service.yml
+  tags:
+    - service

@@ -1,0 +1,4 @@
+nginx_extra_servers_path: "{{ playbook_dir }}/files"
+nginx_extra_servers_template_path: "{{ playbook_dir }}/templates"
+
+web2_port: 8888

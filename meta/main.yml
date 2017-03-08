@@ -3,3 +3,11 @@ galaxy_info:
   company: Idealista S.A.
   description: Nginx server
   min_ansible_version: 2.2
+  license: Apache 2.0
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+  categories:
+    - webserver
+    - proxy

@@ -54,7 +54,10 @@ Use in a playbook:
 
 ## Usage
 
-Look to the defaults properties file to see the possible configuration properties.
+Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
+
+You can add new servers to nginx by including your server as a file or as a template, setting the server
+files in the path defined by `nginx_extra_servers_path` or  `nginx_extra_servers_template_path` (see tests as example).
 
 ## Testing
 
