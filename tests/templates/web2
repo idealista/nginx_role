@@ -1,0 +1,6 @@
+server {
+  listen {{ web2_port }};
+  location / {
+    return 200 'OK';
+  }
+}

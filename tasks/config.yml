@@ -36,7 +36,7 @@
   with_items:
     - "nginx.conf"
 
-- name: NGINX | Create directories
+- name: NGINX | Create config directories
   file:
     path: "{{ nginx_conf_path }}/{{ item }}"
     state: directory
@@ -76,4 +76,36 @@
     state: link
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
+  notify: reload nginx
+
+- name: NGINX | Copy servers files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ nginx_conf_path }}/sites-available/{{ item | basename }}"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ nginx_extra_servers_path }}/*"
+
+- name: NGINX | Copy servers templates
+  template:
+    src: "{{ item }}"
+    dest: "{{ nginx_conf_path }}/sites-available/{{ item | basename }}"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ nginx_extra_servers_template_path }}/*"
+
+- name: NGINX | Enable servers templates
+  file:
+    src: "{{ nginx_conf_path }}/sites-available/{{ item | basename }}"
+    dest: "{{ nginx_conf_path }}/sites-enabled/{{ item | basename }}"
+    state: link
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+  with_fileglob:
+    - "{{ nginx_extra_servers_path }}/*"
+    - "{{ nginx_extra_servers_template_path }}/*"
   notify: reload nginx

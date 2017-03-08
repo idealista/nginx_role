@@ -52,5 +52,10 @@ def test_nginx_executable(File, Command, AnsibleDefaults):
     assert "nginx version: nginx/" + AnsibleDefaults["nginx_version"] in nginx_version.stderr
 
 
-def test_nginx_service(File, Service, Socket, AnsibleDefaults):
+def test_nginx_service(File, Service, Socket, AnsibleVars):
+    web2_port = AnsibleVars["web2_port"]
     assert File("/lib/systemd/system/nginx.service").exists
+    assert Service("nginx").is_enabled
+    assert Service("nginx").is_running
+    assert Socket("tcp://0.0.0.0:9999").is_listening
+    assert Socket("tcp://0.0.0.0:" + str(web2_port)).is_listening
