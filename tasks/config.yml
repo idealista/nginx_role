@@ -5,13 +5,6 @@
     groups: "{{ nginx_groups|join(',') }}"
     append: yes
 
-- name: NGINX | Create pid directory
-  file:
-    path: "{{ nginx_pid_path }}"
-    state: directory
-    owner: "{{ nginx_user }}"
-    group: "{{ nginx_group }}"
-
 - name: NGINX | Create log directory
   file:
     path: "{{ nginx_log_path }}"
@@ -97,6 +90,51 @@
     mode: 0640
   with_fileglob:
     - "{{ nginx_extra_servers_template_path }}/*"
+
+- name: NGINX | Set servers files loaded var
+  find:
+    paths: "{{ nginx_extra_servers_path }}"
+    file_type: file
+  delegate_to: localhost
+  become: no
+  register: servers_files_loaded
+
+- name: NGINX | Set servers templates loaded var
+  find:
+    paths: "{{ nginx_extra_servers_template_path }}"
+    file_type: file
+  delegate_to: localhost
+  become: no
+  register: servers_templates_loaded
+
+- name: NGINX | Set enabled servers var (1/2)
+  set_fact:
+    nginx_template_servers:  "{{ servers_templates_loaded.files | map(attribute='path') | map('basename') | list }}"
+    nginx_file_servers:  "{{ servers_files_loaded.files | map(attribute='path') | map('basename') | list }}"
+
+- name: NGINX | Set enabled servers var (2/2)
+  set_fact:
+    nginx_available_servers:  "{{ nginx_template_servers | union(nginx_file_servers) | union(['prometheus']) }}"
+
+- name: NGINX | List all servers in path
+  find:
+    paths: "{{ nginx_conf_path }}/sites-available"
+    file_type: file
+  register: all_servers_available
+
+- name: NGINX | Remove old servers enabled
+  file:
+    path: "{{ nginx_conf_path }}/sites-enabled/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ all_servers_available.files | map(attribute='path') |  map('basename') | list | difference(nginx_available_servers) }}"
+
+- name: NGINX | Remove old servers available
+  file:
+    path: "{{ nginx_conf_path }}/sites-available/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ all_servers_available.files | map(attribute='path') |  map('basename') | list | difference(nginx_available_servers) }}"
 
 - name: NGINX | Enable servers templates
   file:
