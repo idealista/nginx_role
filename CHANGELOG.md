@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista-tech/nginx-role/tree/develop)
 
+## [1.2.2](https://github.com/idealista-tech/nginx-role/tree/1.2.2) (2017-03-17)
+[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.2.1...1.2.2)
+
+### Added
+- *[#16](https://github.com/idealista-tech/nginx-role/issues/16) Fix pid error* @jmonterrubio
+
 ## [1.2.1](https://github.com/idealista-tech/nginx-role/tree/1.2.1) (2017-03-17)
 [Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.2.0...1.2.1)
 
