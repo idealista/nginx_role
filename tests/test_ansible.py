@@ -34,11 +34,11 @@ def test_nginx_log(File, User, Group, AnsibleDefaults):
 
 
 def test_nginx_pid(File, User, Group, AnsibleDefaults):
-    pid_dir = File(AnsibleDefaults["nginx_pid_path"])
+    pid_dir = File("/run/nginx")
     assert pid_dir.exists
     assert pid_dir.is_directory
-    assert pid_dir.user == AnsibleDefaults["nginx_user"]
-    assert pid_dir.group == AnsibleDefaults["nginx_group"]
+    assert pid_dir.user == "root"
+    assert pid_dir.group == "root"
 
 
 def test_nginx_executable(File, Command, AnsibleDefaults):

@@ -8,6 +8,6 @@
     create 644 {{ nginx_user }} {{ nginx_group }}
     sharedscripts
     postrotate
-        [ -f /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+        [ -f /run/nginx/nginx.pid ] && kill -USR1 `cat /run/nginx/nginx.pid`
     endscript
 }
