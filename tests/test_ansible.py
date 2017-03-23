@@ -59,3 +59,12 @@ def test_nginx_service(File, Service, Socket, AnsibleVars):
     assert Service("nginx").is_running
     assert Socket("tcp://0.0.0.0:9999").is_listening
     assert Socket("tcp://0.0.0.0:" + str(web2_port)).is_listening
+
+
+def test_nginx_prometheus_service(File, Service, Socket, AnsibleVars):
+    metrics_port = AnsibleVars["nginx_prometheus_metrics_port"]
+    assert File("/lib/systemd/system/nginx.service").exists
+    assert Service("nginx").is_enabled
+    assert Service("nginx").is_running
+    assert Socket("tcp://0.0.0.0:9999").is_listening
+    assert Socket("tcp://0.0.0.0:" + str(metrics_port)).is_listening

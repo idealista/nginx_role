@@ -31,6 +31,8 @@ nginx_conf: "{{ nginx_conf_path }}/nginx.conf"
 nginx_extra_servers_path: "{{ playbook_dir }}/files/nginx/servers"
 nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/nginx/servers"
 nginx_install_bin_path: "/usr"
+nginx_extra_path: "extra-conf"
+nginx_extra_conf_path: "{{ nginx_conf_path }}/{{ nginx_extra_path }}"
 
 # Heathers_more
 headers_more_version: 0.27
@@ -40,10 +42,11 @@ lua_module_version: 0.10.7
 lua_version: 5.1.5
 
 ## Metrics
-prometheus_metric_enabled: true
-prometheus_metric_port: 9145
-prometheus_metric_role: nginx
-prometheus_metric_path: /metrics
+nginx_prometheus_metrics_enabled: true
+nginx_prometheus_metrics_port: 9145
+nginx_prometheus_metrics_role: nginx
+nginx_prometheus_metrics_path: /metrics
+metrics_templates_path: "{{ playbook_dir }}/templates/metrics"
 
 ## Miscellaneous
 # Set true to force the download and installation of the package
