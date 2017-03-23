@@ -40,8 +40,10 @@ lua_module_version: 0.10.7
 lua_version: 5.1.5
 
 ## Metrics
+prometheus_metric_enabled: true
 prometheus_metric_port: 9145
 prometheus_metric_role: nginx
+prometheus_metric_path: /metrics
 
 ## Miscellaneous
 # Set true to force the download and installation of the package
