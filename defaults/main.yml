@@ -45,7 +45,7 @@ lua_version: 5.1.5
 nginx_prometheus_metrics_enabled: true
 nginx_prometheus_metrics_port: 9145
 nginx_prometheus_metrics_role: nginx
-nginx_prometheus_metrics_path: /metrics
+nginx_prometheus_metrics_path: metrics
 metrics_templates_path: "{{ playbook_dir }}/templates/metrics"
 
 ## Miscellaneous

@@ -1,6 +1,6 @@
 server {
   listen {{ nginx_prometheus_metrics_port }};
-  location {{ nginx_prometheus_metrics_path }} {
+  location /{{ nginx_prometheus_metrics_path }} {
     content_by_lua 'prometheus:collect()';
   }
 }
