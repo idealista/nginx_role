@@ -1,0 +1,31 @@
+---
+- name: NGINX | Copy prometheus lib
+  copy:
+    src: prometheus.lua
+    dest: "{{ nginx_conf_path }}/plugins/prometheus.lua"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+
+- name: NGINX | Copy prometheus metric server conf
+  template:
+    src: metrics/prometheus.j2
+    dest: "{{ nginx_conf_path }}/sites-available/prometheus"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+
+- name: NGINX | Copy prometheus server config
+  template:
+    src: metrics/prometheus.conf.j2
+    dest: "{{ nginx_extra_conf_path }}/prometheus.conf"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: "0640"
+
+- name: NGINX | Enable prometheus metric server
+  file:
+    src: "{{ nginx_conf_path }}/sites-available/prometheus"
+    dest: "{{ nginx_conf_path }}/sites-enabled/prometheus"
+    state: link
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+  notify: restart nginx

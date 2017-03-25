@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista-tech/nginx-role/tree/develop)
+- *[#19](https://github.com/idealista-tech/nginx-role/issues/19) Prometheus metrics customization* @sorobon
 
 ## [1.2.2](https://github.com/idealista-tech/nginx-role/tree/1.2.2) (2017-03-17)
 [Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.2.1...1.2.2)
