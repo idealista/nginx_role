@@ -39,6 +39,7 @@
     - sites-available
     - sites-enabled
     - plugins
+    - extra-conf
 
 - name: NGINX | Copy logrotate config
   template:
@@ -47,29 +48,6 @@
     mode: 0644
     owner: root
     group: root
-
-- name: NGINX | Copy prometheus lib
-  copy:
-    src: prometheus.lua
-    dest: "{{ nginx_conf_path }}/plugins/prometheus.lua"
-    owner: "{{ nginx_user }}"
-    group: "{{ nginx_group }}"
-
-- name: NGINX | Copy prometheus metric server conf
-  template:
-    src: prometheus.j2
-    dest: "{{ nginx_conf_path }}/sites-available/prometheus"
-    owner: "{{ nginx_user }}"
-    group: "{{ nginx_group }}"
-
-- name: NGINX | Enable prometheus metric server
-  file:
-    src: "{{ nginx_conf_path }}/sites-available/prometheus"
-    dest: "{{ nginx_conf_path }}/sites-enabled/prometheus"
-    state: link
-    owner: "{{ nginx_user }}"
-    group: "{{ nginx_group }}"
-  notify: reload nginx
 
 - name: NGINX | Copy servers files
   copy:

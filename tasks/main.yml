@@ -15,6 +15,12 @@
   tags:
     - configure
 
+- name: NGINX | Metrics
+  include: metrics.yml
+  when: 'nginx_prometheus_metrics_enabled'
+  tags:
+    - metrics
+
 - name: NGINX | Service
   include: service.yml
   tags:
