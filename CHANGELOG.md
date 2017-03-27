@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista-tech/nginx-role/tree/develop)
 
+## [1.3.1](https://github.com/idealista-tech/nginx-role/tree/1.3.1) (2017-03-27)
+[Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.3.0...1.3.1)
+
+### Fixed
+- *[#22](https://github.com/idealista-tech/nginx-role/issues/22) Fix conflict in init scripts* @jmonterrubio
+
 ## [1.3.0](https://github.com/idealista-tech/nginx-role/tree/1.3.0) (2017-03-25)
 [Full Changelog](https://github.com/idealista-tech/nginx-role/compare/1.2.2...1.3.0)
 
