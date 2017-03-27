@@ -75,6 +75,11 @@
   when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
   notify: restart nginx
 
+- name: NGINX | Remove old upstart daemon script
+  file:
+    dest: /etc/init.d/nginx
+    state: absent
+
 - name: NGINX | Copy Daemon script
   template:
     src: nginx.service.j2
