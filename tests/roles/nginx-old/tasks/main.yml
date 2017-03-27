@@ -1,0 +1,82 @@
+---
+
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    force: yes
+    state: latest
+    update_cache: yes
+  with_items: "{{nginx_packages}}"
+  tags:
+    skip_ansible_lint
+
+- name: Download headers-more module
+  get_url:
+    url: https://github.com/openresty/headers-more-nginx-module/archive/v{{ headers_more_version }}.tar.gz
+    dest: /tmp
+    validate_certs: no
+
+- name: Untar headers-more
+  unarchive:
+    copy: no
+    src: /tmp/headers-more-nginx-module-{{ headers_more_version }}.tar.gz
+    dest: /tmp
+
+- name: Download nginx
+  get_url:
+    url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
+    dest: /tmp
+
+- name: Untar nginx
+  unarchive:
+    copy: no
+    src: /tmp/nginx-{{ nginx_version }}.tar.gz
+    dest: /tmp
+
+- name: Install nginx
+  command: chdir=/tmp/nginx-{{ nginx_version }} {{item}}
+  with_items:
+    - ./configure
+        --prefix=/usr
+        --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
+        --conf-path={{ nginx_conf }}
+        --error-log-path={{ nginx_err }}
+        --http-log-path={{ nginx_acc }}
+        --pid-path=/var/run/nginx.pid
+        --lock-path=/var/lock/nginx.lock
+    - make
+    - make install
+  tags:
+    skip_ansible_lint
+
+- name: Copy nginx config
+  template:
+    src: nginx.conf
+    dest: /etc/nginx
+  notify: restart nginx
+
+- name: Create extra configuration directory
+  file:
+    path: /etc/nginx/{{ item }}
+    state: directory
+  with_items:
+    - sites-available
+    - sites-enabled
+
+- name: Copy Daemon script
+  copy:
+    src: daemon
+    dest: /etc/init.d/nginx
+    mode: 0755
+  notify: restart nginx
+
+- name: Update rc
+  shell: update-rc.d -f nginx defaults
+  changed_when: false
+  tags:
+    skip_ansible_lint
+
+- name: Copy logrotate config
+  copy:
+    src: logrotate
+    dest: /etc/logrotate.d/nginx
