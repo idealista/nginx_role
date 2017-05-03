@@ -31,7 +31,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
-- src: http://github.com/idealista-tech/nginx-role.git
+- src: http://github.com/idealista/nginx-role.git
   scm: git
   version: 1.0.0
   name: nginx
@@ -71,15 +71,15 @@ molecule test
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista-tech/nginx-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/nginx-role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
 ## Authors
 
-* **Idealista** - *Work with* - [idealista-tech](https://github.com/idealista-tech)
+* **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista-tech/nginx-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/nginx-role/contributors) who participated in this project.
 
 ## License
 

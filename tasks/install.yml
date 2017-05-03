@@ -55,21 +55,28 @@
     dest: /tmp
   when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
 
+- name: NGINX | Define compile-time options
+  set_fact:
+    nginx_compile_time_options_str: "{{ nginx_compile_time_options_str | default('') }} {{ '--' + item.option + '=' + item.value }}"
+  with_items:
+    - "{{ nginx_compile_time_options }}"
+
+- name: NGINX | Define builtin modules options
+  set_fact:
+    nginx_compile_time_options_builtin_modules_str: "{{ nginx_compile_time_options_builtin_modules_str | default('') }} {{ '--with-' + item }}"
+  with_items:
+    - "{{ nginx_compile_time_options_builtin_modules }}"
+
+- name: NGINX | Define External modules options
+  set_fact:
+    nginx_compile_time_options_external_modules_paths_str: "{{ nginx_compile_time_options_external_modules_paths_str | default('') }} {{ '--add-module=' + item }}"
+  with_items:
+    - "{{ nginx_compile_time_options_external_modules_paths }}"
+
 - name: NGINX | Install nginx
   command: "chdir=/tmp/nginx-{{ nginx_version }} {{item}}"
   with_items:
-    - ./configure
-        --prefix={{ nginx_install_bin_path }}
-        --user={{ nginx_user }}
-        --group={{ nginx_group }}
-        --with-http_stub_status_module
-        --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
-        --add-module=/tmp/lua-nginx-module-{{ lua_module_version }}
-        --conf-path={{ nginx_conf }}
-        --error-log-path={{ nginx_error_log }}
-        --http-log-path={{ nginx_access_log }}
-        --pid-path=/run/nginx/nginx.pid
-        --lock-path=/var/lock/nginx.lock
+    - "./configure {{ nginx_compile_time_options_str }} {{ nginx_compile_time_options_builtin_modules_str }} {{ nginx_compile_time_options_external_modules_paths_str }}"
     - make
     - make install
   when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
