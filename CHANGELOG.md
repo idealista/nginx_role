@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx-role/tree/develop)
 
+## [1.5.0](https://github.com/idealista/nginx-role/tree/1.5.0) (2017-06-30)
+[Full Changelog](https://github.com/idealista/nginx-role/compare/1.4.0...1.5.0)
+
+### Added
+- *[#29](https://github.com/idealista/nginx-role/issues/29) Support debian stretch* @jmonterrubio
+
 ## [1.4.0](https://github.com/idealista/nginx-role/tree/1.4.0) (2017-05-03)
 [Full Changelog](https://github.com/idealista/nginx-role/compare/1.3.1...1.4.0)
 

@@ -1,4 +1,4 @@
-![Logo](logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/nginx-role/master/logo.gif)
 
 # Nginx Ansible role
 
@@ -62,8 +62,10 @@ files in the path defined by `nginx_extra_servers_path` or  `nginx_extra_servers
 ## Testing
 
 ```
-molecule test
+molecule test --platform=Debian9
 ```
+
+See molecule.yml to check possible testing platforms.
 
 ## Built With
 
