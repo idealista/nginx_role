@@ -12,5 +12,12 @@
       when: nginx_check|failed
 
 - hosts: all
+  pre_tasks:
+    - name: NGINX | Installing dependencies
+      apt:
+        pkg: "{{ item }}"
+        state: present
+      with_items:
+        - net-tools
   roles:
     - role: nginx-role

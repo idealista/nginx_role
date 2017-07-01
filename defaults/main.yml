@@ -35,7 +35,7 @@ nginx_extra_path: "extra-conf"
 nginx_extra_conf_path: "{{ nginx_conf_path }}/{{ nginx_extra_path }}"
 
 # Heathers_more
-headers_more_version: 0.27
+headers_more_version: 0.31
 
 # Lua
 lua_module_version: 0.10.7
