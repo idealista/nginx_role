@@ -17,6 +17,7 @@ nginx_service_state: started
 
 # Connection properties
 nginx_workers: auto
+#nginx_worker_rlimit_nofile --if you don't set FD's then OS settings will be used which is by default 2000
 nginx_connections: 2500
 nginx_keepalive_timeout: 65
 nginx_keepalive_requests: 100000
@@ -56,6 +57,7 @@ nginx_force_reinstall: false
 ## https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/
 nginx_compile_time_options_builtin_modules:
   - http_stub_status_module
+  - http_realip_module
 
 nginx_compile_time_options_external_modules_paths:
   - /tmp/headers-more-nginx-module-{{ headers_more_version }}

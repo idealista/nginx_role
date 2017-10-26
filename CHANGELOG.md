@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx-role/tree/develop)
 
+## [1.6.0](https://github.com/idealista/nginx-role/tree/1.6.0) (2017-10-26)
+- *[#32](https://github.com/idealista/nginx-role/issues/32) Support worker_rlimit_nofile setting* @acuervof
+
+[Full Changelog](https://github.com/idealista/nginx-role/compare/1.5.0...1.6.0)
+
 ## [1.5.0](https://github.com/idealista/nginx-role/tree/1.5.0) (2017-06-30)
 [Full Changelog](https://github.com/idealista/nginx-role/compare/1.4.0...1.5.0)
 
