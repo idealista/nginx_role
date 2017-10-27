@@ -34,7 +34,7 @@
     dest: /tmp
 
 - name: Install nginx
-  command: chdir=/tmp/nginx-{{ nginx_old_version }} {{item}}
+  command: "chdir=/tmp/nginx-{{ nginx_old_version }} {{item}}"
   with_items:
     - ./configure
         --prefix=/usr
