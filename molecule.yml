@@ -60,3 +60,36 @@ vagrant:
         - network_name: private_network
           type: dhcp
           auto_config: true
+
+docker:
+  containers:
+    - name: nginx.vm
+      ansible_groups:
+        - group01
+      image: geerlingguy/docker-debian8-ansible
+      image_version: latest
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+    - name: nginx-old.vm
+      ansible_groups:
+        - group01
+      image: geerlingguy/docker-debian8-ansible
+      image_version: latest
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+# verifier configuration
+verifier:
+  name: testinfra
+  options:
+    connection: ansible
+    ansible-inventory: .molecule/ansible_inventory
