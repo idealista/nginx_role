@@ -17,7 +17,8 @@ nginx_service_state: started
 
 # Connection properties
 nginx_workers: auto
-#nginx_worker_rlimit_nofile --if you don't set FD's then OS settings will be used which is by default 2000
+# if you don't set FD's then OS settings will be used which is by default 2000
+# nginx_worker_rlimit_nofile: 2000 
 nginx_connections: 2500
 nginx_keepalive_timeout: 65
 nginx_keepalive_requests: 100000
