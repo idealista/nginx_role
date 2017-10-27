@@ -2,7 +2,7 @@ nginx_workers: 2
 nginx_connections: 2500
 nginx_keepalive_timeout: 65
 nginx_keepalive_requests: 100000
-nginx_version: 1.8.0
+nginx_old_version: 1.8.0
 nginx_acc: '/var/log/nginx/access.log'
 nginx_err: '/var/log/nginx/error.log'
 nginx_conf: '/etc/nginx/nginx.conf'

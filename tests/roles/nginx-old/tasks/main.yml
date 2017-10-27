@@ -24,17 +24,17 @@
 
 - name: Download nginx
   get_url:
-    url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
+    url: http://nginx.org/download/nginx-{{ nginx_old_version }}.tar.gz
     dest: /tmp
 
 - name: Untar nginx
   unarchive:
     copy: no
-    src: /tmp/nginx-{{ nginx_version }}.tar.gz
+    src: /tmp/nginx-{{ nginx_old_version }}.tar.gz
     dest: /tmp
 
 - name: Install nginx
-  command: chdir=/tmp/nginx-{{ nginx_version }} {{item}}
+  command: chdir=/tmp/nginx-{{ nginx_old_version }} {{item}}
   with_items:
     - ./configure
         --prefix=/usr
