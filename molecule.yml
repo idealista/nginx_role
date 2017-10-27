@@ -24,6 +24,7 @@ molecule:
 # ansible related configuration
 ansible:
   playbook: tests/playbook.yml
+  verbose: True
 
 # configuration options for the internal call to vagrant
 vagrant:
