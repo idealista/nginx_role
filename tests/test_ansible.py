@@ -82,7 +82,7 @@ def test_nginx_prometheus_service(File, Service, Socket, AnsibleVars, Hostname):
         assert 200 == urllib2.urlopen('http://{0}:{1}/{2}'.format(Hostname, metrics_port, metrics_path)).getcode()
 
 
-def test_nginx_not_has_prometheus_service(File, Service, Socket, AnsibleVars, Hostname):
+def test_nginx_does_not_have_prometheus_service(File, Service, Socket, AnsibleVars, Hostname):
     if Hostname == "nginx2":
         metrics_port = AnsibleVars["nginx_prometheus_metrics_port"]
         assert File("/lib/systemd/system/nginx.service").exists
