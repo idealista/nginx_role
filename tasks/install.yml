@@ -73,12 +73,32 @@
   with_items:
     - "{{ nginx_compile_time_options_external_modules_paths }}"
 
-- name: NGINX | Install nginx
-  command: "chdir=/tmp/nginx-{{ nginx_version }} {{item}}"
-  with_items:
-    - "./configure {{ nginx_compile_time_options_str }} {{ nginx_compile_time_options_builtin_modules_str }} {{ nginx_compile_time_options_external_modules_paths_str }}"
-    - make
-    - make install
+# - name: NGINX | Install nginx
+#   command: "chdir=/tmp/nginx-{{ nginx_version }} {{item}}"
+#   with_items:
+#     - "./configure {{ nginx_compile_time_options_str }} {{ nginx_compile_time_options_builtin_modules_str }} {{ nginx_compile_time_options_external_modules_paths_str }}"
+#     - make
+#     - make install
+#   when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+#   notify: restart nginx
+
+- name: NGINX | Configure install
+  command: ./configure {{ nginx_compile_time_options_str }} {{ nginx_compile_time_options_builtin_modules_str }} {{ nginx_compile_time_options_external_modules_paths_str }}
+  args:
+    chdir: /tmp/nginx-{{ nginx_version }}
+  when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  notify: restart nginx
+
+- name: NGINX | Make
+  make:
+    chdir: /tmp/nginx-{{ nginx_version }}
+  when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
+  notify: restart nginx
+
+- name: NGINX | Make install
+  make:
+    chdir: /tmp/nginx-{{ nginx_version }}
+    target: install
   when: 'nginx_force_reinstall or nginx_check|failed or "nginx/{{ nginx_version }}" not in nginx_check.stderr'
   notify: restart nginx
 
