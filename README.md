@@ -1,5 +1,7 @@
 ![Logo](https://raw.githubusercontent.com/idealista/nginx-role/master/logo.gif)
 
+[![Build Status](https://travis-ci.org/idealista/nginx-role.png)](https://travis-ci.org/idealista/nginx-role)
+
 # Nginx Ansible role
 
 This ansible role installs a Nginx server in a debian environment. The server is installed using the sources adding the headers-more module and lua module. Also installs [lua](http://www.lua.org/) needed for prometheus metrics.
