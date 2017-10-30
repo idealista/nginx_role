@@ -33,19 +33,39 @@
     src: /tmp/nginx-{{ nginx_old_version }}.tar.gz
     dest: /tmp
 
-- name: Install nginx
-  command: "chdir=/tmp/nginx-{{ nginx_old_version }} {{item}}"
-  with_items:
-    - ./configure
-        --prefix=/usr
-        --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
-        --conf-path={{ nginx_conf }}
-        --error-log-path={{ nginx_err }}
-        --http-log-path={{ nginx_acc }}
-        --pid-path=/var/run/nginx.pid
-        --lock-path=/var/lock/nginx.lock
-    - make
-    - make install
+# - name: Install nginx
+#   command: "chdir=/tmp/nginx-{{ nginx_old_version }} {{item}}"
+#   with_items:
+#     - ./configure
+#         --prefix=/usr
+#         --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
+#         --conf-path={{ nginx_conf }}
+#         --error-log-path={{ nginx_err }}
+#         --http-log-path={{ nginx_acc }}
+#         --pid-path=/var/run/nginx.pid
+#         --lock-path=/var/lock/nginx.lock
+#     - make
+#     - make install
+#   tags:
+#     skip_ansible_lint
+
+- name: NGINX | Configure install
+  command: ./configure --prefix=/usr --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }} --conf-path={{ nginx_conf }} --error-log-path={{ nginx_err }} --http-log-path={{ nginx_acc }} --pid-path=/var/run/nginx.pid --lock-path=/var/lock/nginx.lock
+  args:
+    chdir: /tmp/nginx-{{ nginx_old_version }}
+  tags:
+    skip_ansible_lint
+
+- name: NGINX | Make
+  make:
+    chdir: /tmp/nginx-{{ nginx_old_version }}
+  tags:
+    skip_ansible_lint
+
+- name: NGINX | Make install
+  make:
+    chdir: /tmp/nginx-{{ nginx_old_version }}
+    target: install
   tags:
     skip_ansible_lint
 
