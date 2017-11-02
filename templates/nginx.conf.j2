@@ -1,9 +1,13 @@
 worker_processes {{ nginx_workers }};
 error_log  {{ nginx_error_log }};
+{% if nginx_worker_rlimit_nofile is defined %}
+worker_rlimit_nofile {{ nginx_worker_rlimit_nofile }};
+{% endif %}
 
 events {
     worker_connections {{ nginx_connections }};
     use epoll;
+    multi_accept on;
 }
 
 http {
@@ -14,7 +18,7 @@ http {
 
     client_max_body_size {{ nginx_client_max_body_size }};
 
-    include  mime.types;
+    include mime.types;
 
     default_type  application/octet-stream;
     sendfile  on;
