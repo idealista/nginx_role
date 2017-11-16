@@ -58,5 +58,5 @@ nginx_compile_time_options_builtin_modules:
   - http_stub_status_module
 
 nginx_compile_time_options_external_modules_paths:
-  - /tmp/headers-more-nginx-module-{{ headers_more_version }}
-  - /tmp/lua-nginx-module-{{ lua_module_version }}
+  - /nginxbuild/headers-more-nginx-module-{{ headers_more_version }}
+  - /nginxbuild/lua-nginx-module-{{ lua_module_version }}
