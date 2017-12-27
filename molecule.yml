@@ -60,3 +60,43 @@ vagrant:
         - network_name: private_network
           type: dhcp
           auto_config: true
+docker:
+  network:
+    - name: nginx-network
+      driver: bridge
+  containers:
+    - name: nginx.vm
+      ansible_groups:
+        - group01
+      image: geerlingguy/docker-debian9-ansible
+      image_version: latest
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+      network_mode: nginx-network
+
+    - name: nginx-old.vm
+      ansible_groups:
+        - group01
+      image: geerlingguy/docker-debian9-ansible
+      image_version: latest
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+      network_mode: nginx-network
+
+verifier:
+  name: testinfra
+  options:
+    # We have to override these options because, when Docker driver selected,
+    # Testinfra uses Docker as backend connection instead of Ansible and the
+    # fixture in tests/test_ansible.yml won't work and neither will testinfra
+    # find the containers
+    connection: ansible
+    ansible-inventory: .molecule/ansible_inventory
