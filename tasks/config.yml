@@ -43,7 +43,7 @@
 
 - name: NGINX | Copy logrotate config
   template:
-    src: logrotate.j2
+    src: "{{ nginx_logrotate_template_path }}"
     dest: /etc/logrotate.d/nginx
     mode: 0644
     owner: root

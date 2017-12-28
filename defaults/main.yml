@@ -18,7 +18,7 @@ nginx_service_state: started
 # Connection properties
 nginx_workers: auto
 # if you don't set FD's then OS settings will be used which is by default 2000
-# nginx_worker_rlimit_nofile: 2000 
+# nginx_worker_rlimit_nofile: 2000
 nginx_connections: 2500
 nginx_keepalive_timeout: 65
 nginx_keepalive_requests: 100000
@@ -35,6 +35,8 @@ nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/nginx/servers"
 nginx_install_bin_path: "/usr"
 nginx_extra_path: "extra-conf"
 nginx_extra_conf_path: "{{ nginx_conf_path }}/{{ nginx_extra_path }}"
+nginx_logrotate_template_path: "{{ playbook_dir }}/templates/logrotate.j2"
+
 
 # Heathers_more
 headers_more_version: 0.31
