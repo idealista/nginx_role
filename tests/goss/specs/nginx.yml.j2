@@ -1,0 +1,63 @@
+group:
+  {{ nginx_group }}:
+    exists: true
+
+user:
+  {{ nginx_user }}:
+    exists: true
+    groups:
+      - {{ nginx_group }}
+
+file:
+  {{ nginx_conf_path }}:
+    owner: {{ nginx_user }}
+    group: {{ nginx_group }}
+    exists: true
+    filetype: directory
+  {{ nginx_log_path }}:
+    owner: {{ nginx_user }}
+    group: {{ nginx_group }}
+    exists: true
+    filetype: directory
+  /run/nginx:
+    owner: root
+    group: root
+    exists: true
+    filetype: directory
+  {{ nginx_install_bin_path }}/sbin/nginx:
+    owner: root
+    group: root
+    exists: true
+  /lib/systemd/system/nginx.service:
+    exists: true
+{% if nginx_prometheus_metrics_enabled %}
+  {{ nginx_conf_path }}/sites-available/prometheus:
+    exists: true
+  {{ nginx_conf_path }}/sites-enabled/prometheus:
+    exists: true
+  {{ nginx_conf_path }}/extra-conf/prometheus.conf:
+    exists: true
+{% endif %}
+
+command:
+  {{ nginx_install_bin_path }}/sbin/nginx -v:
+    exit-status: 0
+    stderr:
+      - "{{ nginx_version }}"
+
+service:
+  nginx:
+    enabled: true
+    running: true
+
+port:
+  tcp:{{ web2_port }}:
+    listening: true
+{% if nginx_prometheus_metrics_enabled %}
+  tcp:9999:
+    listening: true
+
+http:
+http://localhost:{{ nginx_prometheus_metrics_port }}/{{ nginx_prometheus_metrics_path }}:
+  status: 200
+{% endif %}
