@@ -49,6 +49,7 @@ vagrant:
     - name: nginx.vm
       ansible_groups:
         - group01
+        - nginx
       interfaces:
         - network_name: private_network
           type: dhcp
@@ -56,6 +57,7 @@ vagrant:
     - name: nginx-old.vm
       ansible_groups:
         - group01
+        - nginx_old
       interfaces:
         - network_name: private_network
           type: dhcp
@@ -65,9 +67,10 @@ docker:
     - name: nginx-network
       driver: bridge
   containers:
-    - name: nginx.vm
+    - name: nginx
       ansible_groups:
         - group01
+        - nginx
       dockerfile: tests/Dockerfile
       image: nginx_role
       image_version: latest
@@ -79,9 +82,10 @@ docker:
       command: '/lib/systemd/systemd'
       network_mode: nginx-network
 
-    - name: nginx-old.vm
+    - name: nginx-old
       ansible_groups:
         - group01
+        - nginx_old
       dockerfile: tests/Dockerfile
       image: nginx_role
       image_version: latest

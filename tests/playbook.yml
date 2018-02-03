@@ -1,5 +1,5 @@
 ---
-- hosts: nginx-old.vm
+- hosts: nginx-old
   pre_tasks:
     - name: NGINX | Check nginx version
       command: nginx -v
