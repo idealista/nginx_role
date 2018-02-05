@@ -8,3 +8,6 @@ nginx_err: '/var/log/nginx/error.log'
 nginx_conf: '/etc/nginx/nginx.conf'
 
 headers_more_version: 0.27
+
+nginx_download_dir: "/nginxbuild"
+nginx_src_dir: "/usr/src"
