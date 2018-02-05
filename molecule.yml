@@ -43,8 +43,8 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 256
-        cpus: 1
+        memory: 2048
+        cpus: 2
 
   instances:
     - name: nginx.vm
