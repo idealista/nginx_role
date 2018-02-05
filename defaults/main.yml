@@ -25,6 +25,8 @@ nginx_keepalive_requests: 100000
 nginx_client_max_body_size: 50M
 
 # Files & Paths
+nginx_download_dir: "/tmp"
+nginx_src_dir: "/usr/src/"
 nginx_log_path: "/var/log/nginx"
 nginx_access_log: "{{ nginx_log_path }}/access.log"
 nginx_error_log: "{{ nginx_log_path }}/error.log"
@@ -63,5 +65,5 @@ nginx_compile_time_options_builtin_modules:
   - http_realip_module
 
 nginx_compile_time_options_external_modules_paths:
-  - /nginxbuild/headers-more-nginx-module-{{ headers_more_version }}
-  - /nginxbuild/lua-nginx-module-{{ lua_module_version }}
+  - "{{ nginx_src_dir }}/headers-more-nginx-module-{{ headers_more_version }}"
+  - "{{ nginx_src_dir }}/lua-nginx-module-{{ lua_module_version }}"
