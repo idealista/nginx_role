@@ -27,11 +27,11 @@ ansible:
 
 # configuration options for the internal call to vagrant
 vagrant:
-  # molecule's --platform option will look for these names
   raw_config_args:
     - "landrush.enabled = true"
     - "landrush.tld = 'vm'"
     - "landrush.guest_redirect_dns = false"
+  # molecule's --platform option will look for these names
   platforms:
     - name: Debian9
       box: debian/stretch64
@@ -42,8 +42,8 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 256
-        cpus: 1
+        memory: 2048
+        cpus: 2
 
   instances:
     - name: nginx.vm
