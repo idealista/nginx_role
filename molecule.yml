@@ -15,8 +15,9 @@ molecule:
     - .vagrant
     - .molecule
 
-  # directory to look for testinfra tests
-  testinfra_dir: tests
+  # directory to look for goss tests
+  goss_dir: tests/goss
+  goss_playbook: verifier.yml
 
   # directory containing group_vars to use with ansible
   group_vars: ../tests/group_vars
@@ -27,11 +28,11 @@ ansible:
 
 # configuration options for the internal call to vagrant
 vagrant:
-  # molecule's --platform option will look for these names
   raw_config_args:
     - "landrush.enabled = true"
     - "landrush.tld = 'vm'"
     - "landrush.guest_redirect_dns = false"
+  # molecule's --platform option will look for these names
   platforms:
     - name: Debian9
       box: debian/stretch64
@@ -42,13 +43,14 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 256
-        cpus: 1
+        memory: 2048
+        cpus: 2
 
   instances:
     - name: nginx.vm
       ansible_groups:
         - group01
+        - nginx
       interfaces:
         - network_name: private_network
           type: dhcp
@@ -56,6 +58,7 @@ vagrant:
     - name: nginx-old.vm
       ansible_groups:
         - group01
+        - nginx_old
       interfaces:
         - network_name: private_network
           type: dhcp
@@ -65,10 +68,12 @@ docker:
     - name: nginx-network
       driver: bridge
   containers:
-    - name: nginx.vm
+    - name: nginx
       ansible_groups:
         - group01
-      image: geerlingguy/docker-debian9-ansible
+        - nginx
+      dockerfile: tests/Dockerfile
+      image: nginx_role
       image_version: latest
       privileged: True
       cap_add:
@@ -78,10 +83,12 @@ docker:
       command: '/lib/systemd/systemd'
       network_mode: nginx-network
 
-    - name: nginx-old.vm
+    - name: nginx-old
       ansible_groups:
         - group01
-      image: geerlingguy/docker-debian9-ansible
+        - nginx_old
+      dockerfile: tests/Dockerfile
+      image: nginx_role
       image_version: latest
       privileged: True
       cap_add:
@@ -92,11 +99,4 @@ docker:
       network_mode: nginx-network
 
 verifier:
-  name: testinfra
-  options:
-    # We have to override these options because, when Docker driver selected,
-    # Testinfra uses Docker as backend connection instead of Ansible and the
-    # fixture in tests/test_ansible.yml won't work and neither will testinfra
-    # find the containers
-    connection: ansible
-    ansible-inventory: .molecule/ansible_inventory
+  name: goss
