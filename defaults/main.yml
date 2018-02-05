@@ -26,7 +26,7 @@ nginx_client_max_body_size: 50M
 
 # Files & Paths
 nginx_download_dir: "/tmp"
-nginx_src_dir: "/usr/src/"
+nginx_src_dir: "/usr/src"
 nginx_log_path: "/var/log/nginx"
 nginx_access_log: "{{ nginx_log_path }}/access.log"
 nginx_error_log: "{{ nginx_log_path }}/error.log"
