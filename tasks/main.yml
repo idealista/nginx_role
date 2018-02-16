@@ -1,27 +1,27 @@
 ---
 
 - name: NGINX | Dependencies
-  include: dependencies.yml
+  import_tasks: dependencies.yml
   tags:
     - dependencies
 
 - name: NGINX | Install
-  include: install.yml
+  import_tasks: install.yml
   tags:
     - install
 
 - name: NGINX | Configure
-  include: config.yml
+  import_tasks: config.yml
   tags:
     - configure
 
 - name: NGINX | Metrics
-  include: metrics.yml
-  when: 'nginx_prometheus_metrics_enabled'
+  import_tasks: metrics.yml
+  when: nginx_prometheus_metrics_enabled
   tags:
     - metrics
 
 - name: NGINX | Service
-  include: service.yml
+  import_tasks: service.yml
   tags:
     - service

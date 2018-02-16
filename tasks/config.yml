@@ -58,6 +58,7 @@
     mode: 0640
   with_fileglob:
     - "{{ nginx_extra_servers_path }}/*"
+  notify: reload nginx
 
 - name: NGINX | Copy servers templates
   template:
@@ -68,6 +69,7 @@
     mode: 0640
   with_fileglob:
     - "{{ nginx_extra_servers_template_path }}/*"
+  notify: reload nginx
 
 - name: NGINX | Set servers files loaded var
   find:
@@ -106,6 +108,7 @@
     state: absent
   with_items:
     - "{{ all_servers_available.files | map(attribute='path') |  map('basename') | list | difference(nginx_available_servers) }}"
+  notify: reload nginx
 
 - name: NGINX | Remove old servers available
   file:
