@@ -1,7 +1,7 @@
 ---
 ## General
 
-nginx_version: 1.10.2
+nginx_version: 1.12.2
 
 ## Service options
 
@@ -44,10 +44,11 @@ nginx_logrotate_template_path: "{{ playbook_dir }}/templates/logrotate.j2"
 headers_more_version: 0.31
 
 # Lua
-lua_module_version: 0.10.7
+lua_module_version: 0.10.11
 lua_version: 5.1.5
 
 ## Metrics
+nginx_lua_prometheus_version: 0.1-20170610
 nginx_prometheus_metrics_enabled: true
 nginx_prometheus_metrics_port: 9145
 nginx_prometheus_metrics_role: nginx
