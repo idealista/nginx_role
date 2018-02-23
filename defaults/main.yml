@@ -1,7 +1,7 @@
 ---
 ## General
 
-nginx_version: 1.10.2
+nginx_version: 1.12.2
 
 ## Service options
 
@@ -18,13 +18,15 @@ nginx_service_state: started
 # Connection properties
 nginx_workers: auto
 # if you don't set FD's then OS settings will be used which is by default 2000
-# nginx_worker_rlimit_nofile: 2000 
+# nginx_worker_rlimit_nofile: 2000
 nginx_connections: 2500
 nginx_keepalive_timeout: 65
 nginx_keepalive_requests: 100000
 nginx_client_max_body_size: 50M
 
 # Files & Paths
+nginx_download_dir: "/tmp"
+nginx_src_dir: "/usr/src"
 nginx_log_path: "/var/log/nginx"
 nginx_access_log: "{{ nginx_log_path }}/access.log"
 nginx_error_log: "{{ nginx_log_path }}/error.log"
@@ -35,15 +37,18 @@ nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/nginx/servers"
 nginx_install_bin_path: "/usr"
 nginx_extra_path: "extra-conf"
 nginx_extra_conf_path: "{{ nginx_conf_path }}/{{ nginx_extra_path }}"
+nginx_logrotate_template_path: "{{ playbook_dir }}/templates/logrotate.j2"
+
 
 # Heathers_more
 headers_more_version: 0.31
 
 # Lua
-lua_module_version: 0.10.7
+lua_module_version: 0.10.11
 lua_version: 5.1.5
 
 ## Metrics
+nginx_lua_prometheus_version: 0.1-20170610
 nginx_prometheus_metrics_enabled: true
 nginx_prometheus_metrics_port: 9145
 nginx_prometheus_metrics_role: nginx
@@ -61,5 +66,5 @@ nginx_compile_time_options_builtin_modules:
   - http_realip_module
 
 nginx_compile_time_options_external_modules_paths:
-  - /tmp/headers-more-nginx-module-{{ headers_more_version }}
-  - /tmp/lua-nginx-module-{{ lua_module_version }}
+  - "{{ nginx_src_dir }}/headers-more-nginx-module-{{ headers_more_version }}"
+  - "{{ nginx_src_dir }}/lua-nginx-module-{{ lua_module_version }}"

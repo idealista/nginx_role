@@ -15,8 +15,9 @@ molecule:
     - .vagrant
     - .molecule
 
-  # directory to look for testinfra tests
-  testinfra_dir: tests
+  # directory to look for goss tests
+  goss_dir: tests/goss
+  goss_playbook: verifier.yml
 
   # directory containing group_vars to use with ansible
   group_vars: ../tests/group_vars
@@ -27,11 +28,14 @@ ansible:
 
 # configuration options for the internal call to vagrant
 vagrant:
-  # molecule's --platform option will look for these names
   raw_config_args:
-    - "landrush.enabled = true"
-    - "landrush.tld = 'vm'"
-    - "landrush.guest_redirect_dns = false"
+    - "hostmanager.enabled = true"
+    # Enable for debug purpose
+    #- "hostmanager.manage_host = true"
+    - "hostmanager.manage_guest = true"
+    - "hostmanager.ignore_private_ip = false"
+    - "hostmanager.include_offline = true"
+  # molecule's --platform option will look for these names
   platforms:
     - name: Debian9
       box: debian/stretch64
@@ -42,8 +46,8 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 256
-        cpus: 1
+        memory: 2048
+        cpus: 2
 
   instances:
     - name: nginx.vm
@@ -51,12 +55,49 @@ vagrant:
         - group01
       interfaces:
         - network_name: private_network
-          type: dhcp
+          type: static
+          ip: 172.28.128.10
           auto_config: true
     - name: nginx-old.vm
       ansible_groups:
-        - group01
+        - group02
       interfaces:
         - network_name: private_network
-          type: dhcp
+          type: static
+          ip: 172.28.128.11
           auto_config: true
+docker:
+  network:
+    - name: nginx-network
+      driver: bridge
+  containers:
+    - name: nginx
+      ansible_groups:
+        - group01
+      dockerfile: tests/Dockerfile
+      image: nginx_role
+      image_version: latest
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+      network_mode: nginx-network
+
+    - name: nginx-old
+      ansible_groups:
+        - group01
+      dockerfile: tests/Dockerfile
+      image: nginx_role
+      image_version: latest
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+      network_mode: nginx-network
+
+verifier:
+  name: goss

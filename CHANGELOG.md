@@ -4,6 +4,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx-role/tree/develop)
 
+## [1.7.0](https://github.com/idealista/nginx-role/tree/1.7.0) (2018-2-23)
+[Full Changelog](https://github.com/idealista/nginx-role/compare/1.6.0...1.7.0)
+
+### Added
+- *[#6](https://github.com/idealista/nginx-role/issues/6) Add Travis CI* @jnogol
+
+### Changed
+- *[#42](https://github.com/idealista/nginx-role/issues/42) Update Prometheus metrics* @jmonterrubio
+
+### Fixed
+- *[#43](https://github.com/idealista/nginx-role/issues/43) Notify reload handler when changing configuration* @jmonterrubio
+
 ## [1.6.0](https://github.com/idealista/nginx-role/tree/1.6.0) (2017-10-26)
 [Full Changelog](https://github.com/idealista/nginx-role/compare/1.5.0...1.6.0)
 

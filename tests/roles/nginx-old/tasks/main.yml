@@ -10,42 +10,51 @@
   tags:
     skip_ansible_lint
 
+- name: NGINX | Create build folder
+  file:
+    path: "{{ nginx_download_dir }}"
+    state: directory
+
 - name: Download headers-more module
   get_url:
     url: https://github.com/openresty/headers-more-nginx-module/archive/v{{ headers_more_version }}.tar.gz
-    dest: /tmp
+    dest: "{{ nginx_download_dir }}"
     validate_certs: no
 
 - name: Untar headers-more
   unarchive:
     copy: no
-    src: /tmp/headers-more-nginx-module-{{ headers_more_version }}.tar.gz
-    dest: /tmp
+    src: "{{ nginx_download_dir }}/headers-more-nginx-module-{{ headers_more_version }}.tar.gz"
+    dest: "{{ nginx_src_dir }}"
 
 - name: Download nginx
   get_url:
-    url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
-    dest: /tmp
+    url: http://nginx.org/download/nginx-{{ nginx_old_version }}.tar.gz
+    dest: "{{ nginx_download_dir }}"
 
 - name: Untar nginx
   unarchive:
     copy: no
-    src: /tmp/nginx-{{ nginx_version }}.tar.gz
-    dest: /tmp
+    src: "{{ nginx_download_dir }}/nginx-{{ nginx_old_version }}.tar.gz"
+    dest: "{{ nginx_src_dir }}"
 
-- name: Install nginx
-  command: chdir=/tmp/nginx-{{ nginx_version }} {{item}}
-  with_items:
-    - ./configure
-        --prefix=/usr
-        --add-module=/tmp/headers-more-nginx-module-{{ headers_more_version }}
-        --conf-path={{ nginx_conf }}
-        --error-log-path={{ nginx_err }}
-        --http-log-path={{ nginx_acc }}
-        --pid-path=/var/run/nginx.pid
-        --lock-path=/var/lock/nginx.lock
-    - make
-    - make install
+- name: NGINX | Configure install
+  command: ./configure --prefix=/usr --add-module={{ nginx_src_dir }}/headers-more-nginx-module-{{ headers_more_version }} --conf-path={{ nginx_conf }} --error-log-path={{ nginx_err }} --http-log-path={{ nginx_acc }} --pid-path=/var/run/nginx.pid --lock-path=/var/lock/nginx.lock
+  args:
+    chdir: "{{ nginx_src_dir }}/nginx-{{ nginx_old_version }}"
+  tags:
+    skip_ansible_lint
+
+- name: NGINX | Make
+  make:
+    chdir: "{{ nginx_src_dir }}/nginx-{{ nginx_old_version }}"
+  tags:
+    skip_ansible_lint
+
+- name: NGINX | Make install
+  make:
+    chdir: "{{ nginx_src_dir }}/nginx-{{ nginx_old_version }}"
+    target: install
   tags:
     skip_ansible_lint
 

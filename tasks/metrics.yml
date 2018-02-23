@@ -1,8 +1,15 @@
 ---
+- name: NGINX | Get nginx-lua-prometheus
+  unarchive:
+    src: "{{ nginx_lua_prometheus_url }}"
+    dest: "{{ nginx_download_dir }}"
+    remote_src: yes
+
 - name: NGINX | Copy prometheus lib
   copy:
-    src: prometheus.lua
+    src: "{{ nginx_download_dir }}/nginx-lua-prometheus-{{ nginx_lua_prometheus_version }}/prometheus.lua"
     dest: "{{ nginx_conf_path }}/plugins/prometheus.lua"
+    remote_src: true
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
 

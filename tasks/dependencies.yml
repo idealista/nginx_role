@@ -19,17 +19,23 @@
     url: "{{ lua_url }}"
     dest: /tmp
     validate_certs: no
-  when: 'nginx_force_reinstall or lua_check|failed or "Lua {{ lua_version }}" not in lua_check.stderr'
+  when: nginx_force_reinstall or
+        lua_check|failed or
+        "Lua " + lua_version not in lua_check.stderr
 
 - name: NGINX | Untar lua
   unarchive:
     copy: no
     src: /tmp/lua-{{ lua_version }}.tar.gz
     dest: /tmp
-  when: 'nginx_force_reinstall or lua_check|failed or "Lua {{ lua_version }}" not in lua_check.stderr'
+  when: nginx_force_reinstall or
+        lua_check|failed or
+        "Lua " + lua_version not in lua_check.stderr
 
 - name: NGINX | Build lua
   command: "chdir=/tmp/lua-{{ lua_version }} {{item}}"
   with_items:
     - make linux install
-  when: 'nginx_force_reinstall or lua_check|failed or "Lua {{ lua_version }}" not in lua_check.stderr'
+  when: nginx_force_reinstall or
+        lua_check|failed or
+        "Lua " + lua_version not in lua_check.stderr
