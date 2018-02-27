@@ -12,7 +12,7 @@ ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
 User=root
-LimitNOFILE= {{ nginx_limit_no_file }}
+LimitNOFILE={{ nginx_limit_no_file }}
 
 [Install]
 WantedBy=multi-user.target
