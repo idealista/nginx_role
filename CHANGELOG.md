@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx-role/tree/develop)
 
+## [1.8.0](https://github.com/idealista/nginx-role/tree/1.8.0) (2018-2-27)
+[Full Changelog](https://github.com/idealista/nginx-role/compare/1.7.0...1.8.0)
+
+### Added
+- *[#46](https://github.com/idealista/nginx-role/issues/46) Added configurable limit no file* @javierRobledo, @danieljesus
+
+### Changed
+- *[#48](https://github.com/idealista/nginx-role/issues/48) Make logrotate optional* @jnogol
+
 ## [1.7.0](https://github.com/idealista/nginx-role/tree/1.7.0) (2018-2-23)
 [Full Changelog](https://github.com/idealista/nginx-role/compare/1.6.0...1.7.0)
 

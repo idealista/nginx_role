@@ -37,8 +37,10 @@ nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/nginx/servers"
 nginx_install_bin_path: "/usr"
 nginx_extra_path: "extra-conf"
 nginx_extra_conf_path: "{{ nginx_conf_path }}/{{ nginx_extra_path }}"
-nginx_logrotate_template_path: "{{ playbook_dir }}/templates/logrotate.j2"
 
+# Logrotate
+nginx_logrotate_enabled: true
+nginx_logrotate_template_path: templates/logrotate.j2 # This picks the one in the role
 
 # Heathers_more
 headers_more_version: 0.31
@@ -68,3 +70,5 @@ nginx_compile_time_options_builtin_modules:
 nginx_compile_time_options_external_modules_paths:
   - "{{ nginx_src_dir }}/headers-more-nginx-module-{{ headers_more_version }}"
   - "{{ nginx_src_dir }}/lua-nginx-module-{{ lua_module_version }}"
+
+nginx_limit_no_file: 1024
