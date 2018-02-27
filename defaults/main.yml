@@ -37,8 +37,10 @@ nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/nginx/servers"
 nginx_install_bin_path: "/usr"
 nginx_extra_path: "extra-conf"
 nginx_extra_conf_path: "{{ nginx_conf_path }}/{{ nginx_extra_path }}"
-nginx_logrotate_template_path: "{{ playbook_dir }}/templates/logrotate.j2"
 
+# Logrotate
+nginx_logrotate_enabled: true
+nginx_logrotate_template_path: templates/logrotate.j2 # This picks the one in the role
 
 # Heathers_more
 headers_more_version: 0.31
