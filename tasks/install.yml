@@ -5,8 +5,6 @@
     pkg: "{{ item }}"
     state: present
   with_items: "{{ required_libs }}"
-  tags:
-    skip_ansible_lint
 
 - name: NGINX | Check nginx version
   command: nginx -v
