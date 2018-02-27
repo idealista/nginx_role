@@ -48,6 +48,7 @@
     mode: 0644
     owner: root
     group: root
+  when: nginx_logrotate_enabled
 
 - name: NGINX | Copy servers files
   copy:
