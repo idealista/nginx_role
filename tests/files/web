@@ -1,6 +1,0 @@
-server {
-  listen 9999;
-  location / {
-    return 200 'OK';
-  }
-}

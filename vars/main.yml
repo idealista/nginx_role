@@ -1,19 +1,18 @@
-required_libs:
+---
+nginx_required_libs:
   - build-essential
   - libpcre3-dev
   - libssl-dev
   - zlib1g-dev
-
 nginx_url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
-headers_more_url: https://github.com/openresty/headers-more-nginx-module/archive/v{{ headers_more_version }}.tar.gz
-lua_module_url: https://github.com/openresty/lua-nginx-module/archive/v{{ lua_module_version }}.tar.gz
-nginx_lua_prometheus_url: https://github.com/knyar/nginx-lua-prometheus/archive/{{ nginx_lua_prometheus_version }}.tar.gz
 
-lua_dependencies:
+lua_required_libs:
   - build-essential
   - libreadline-dev
   - lib32ncurses5-dev
 lua_url: http://www.lua.org/ftp/lua-{{ lua_version }}.tar.gz
+
+nginx_lua_prometheus_url: https://github.com/knyar/nginx-lua-prometheus/archive/{{ nginx_lua_prometheus_version }}.tar.gz
 
 ## Nginx compile time options
 ## https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/

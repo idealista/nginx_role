@@ -1,5 +1,0 @@
-nginx_extra_servers_path: "{{ playbook_dir }}/files"
-nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/sites"
-
-web2_port: 8888
-nginx_prometheus_metrics_enabled: false
