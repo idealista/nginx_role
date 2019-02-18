@@ -1,7 +1,7 @@
-![Logo](https://raw.githubusercontent.com/idealista/nginx-role/master/logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/nginx_role/master/logo.gif)
 
-[![Build Status](https://travis-ci.org/idealista/nginx-role.png)](https://travis-ci.org/idealista/nginx-role)
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-idealista.nginx__role-B62682.svg)](https://galaxy.ansible.com/idealista/nginx-role)
+[![Build Status](https://travis-ci.org/idealista/nginx_role.png)](https://travis-ci.org/idealista/nginx_role)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-idealista.nginx__role-B62682.svg)](https://galaxy.ansible.com/idealista/nginx_role)
 
 # Nginx Ansible role
 
@@ -34,7 +34,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker]
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
-- src: idealista.nginx-role
+- src: idealista.nginx_role
   version: 2.0.0
   name: nginx
 ```
@@ -91,7 +91,7 @@ See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecul
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista/nginx-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/nginx_role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
@@ -99,7 +99,7 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 * **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/nginx-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/nginx_role/contributors) who participated in this project.
 
 ## License
 

@@ -88,7 +88,7 @@ Every project has a CHANGELOG.md file. Once your code is ready to be merged plea
 
 Then write the issue info this way:
 
-- *[#29](https://github.com/idealista/nginx-role/issues/29) Support debian stretch* @jmonterrubio
+- *[#29](https://github.com/idealista/nginx_role/issues/29) Support debian stretch* @jmonterrubio
 
 ## Styleguides
 
