@@ -3,7 +3,7 @@
   user:
     name: "{{ nginx_user }}"
     groups: "{{ nginx_groups|join(',') }}"
-    append: yes
+    append: true
 
 - name: NGINX | Create log directory
   file:
@@ -26,8 +26,8 @@
     group: "{{ nginx_group }}"
     mode: "0640"
   notify: restart nginx
-  with_items:
-    - "nginx.conf"
+  loop:
+    - nginx.conf
 
 - name: NGINX | Create config directories
   file:
@@ -35,7 +35,7 @@
     state: directory
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
-  with_items:
+  loop:
     - sites-available
     - sites-enabled
     - plugins
@@ -77,7 +77,7 @@
     paths: "{{ nginx_extra_servers_path }}"
     file_type: file
   delegate_to: localhost
-  become: no
+  become: false
   register: servers_files_loaded
 
 - name: NGINX | Set servers templates loaded var
@@ -85,17 +85,17 @@
     paths: "{{ nginx_extra_servers_template_path }}"
     file_type: file
   delegate_to: localhost
-  become: no
+  become: false
   register: servers_templates_loaded
 
 - name: NGINX | Set enabled servers var (1/2)
   set_fact:
-    nginx_template_servers:  "{{ servers_templates_loaded.files | map(attribute='path') | map('basename') | list }}"
-    nginx_file_servers:  "{{ servers_files_loaded.files | map(attribute='path') | map('basename') | list }}"
+    nginx_template_servers: "{{ servers_templates_loaded.files | map(attribute='path') | map('basename') | list }}"
+    nginx_file_servers: "{{ servers_files_loaded.files | map(attribute='path') | map('basename') | list }}"
 
 - name: NGINX | Set enabled servers var (2/2)
   set_fact:
-    nginx_available_servers:  "{{ nginx_template_servers | union(nginx_file_servers) | union(['prometheus']) }}"
+    nginx_available_servers: "{{ nginx_template_servers | union(nginx_file_servers) | union(['prometheus']) }}"
 
 - name: NGINX | List all servers in path
   find:
@@ -107,7 +107,7 @@
   file:
     path: "{{ nginx_conf_path }}/sites-enabled/{{ item }}"
     state: absent
-  with_items:
+  loop:
     - "{{ all_servers_available.files | map(attribute='path') |  map('basename') | list | difference(nginx_available_servers) }}"
   notify: reload nginx
 
@@ -115,7 +115,7 @@
   file:
     path: "{{ nginx_conf_path }}/sites-available/{{ item }}"
     state: absent
-  with_items:
+  loop:
     - "{{ all_servers_available.files | map(attribute='path') |  map('basename') | list | difference(nginx_available_servers) }}"
 
 - name: NGINX | Enable servers templates

@@ -1,3 +1,5 @@
+---
+
 group:
   {{ nginx_group }}:
     exists: true
@@ -30,14 +32,12 @@ file:
     exists: true
   /lib/systemd/system/nginx.service:
     exists: true
-{% if nginx_prometheus_metrics_enabled %}
   {{ nginx_conf_path }}/sites-available/prometheus:
     exists: true
   {{ nginx_conf_path }}/sites-enabled/prometheus:
     exists: true
   {{ nginx_conf_path }}/extra-conf/prometheus.conf:
     exists: true
-{% endif %}
 
 command:
   {{ nginx_install_bin_path }}/sbin/nginx -v:
@@ -53,11 +53,9 @@ service:
 port:
   tcp:{{ web2_port }}:
     listening: true
-{% if nginx_prometheus_metrics_enabled %}
-  tcp:9999:
+  tcp:{{nginx_prometheus_metrics_port}}:
     listening: true
 
 http:
 http://localhost:{{ nginx_prometheus_metrics_port }}/{{ nginx_prometheus_metrics_path }}:
   status: 200
-{% endif %}
