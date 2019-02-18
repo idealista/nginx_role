@@ -1,5 +1,0 @@
-nginx_packages:
-  - build-essential
-  - libpcre3-dev
-  - g++
-  - zlib1g-dev

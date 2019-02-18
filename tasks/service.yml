@@ -5,4 +5,4 @@
     name: nginx
     state: "{{ nginx_service_state }}"
     enabled: "{{ nginx_service_enabled }}"
-    daemon_reload: yes
+    daemon_reload: true

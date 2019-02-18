@@ -3,7 +3,7 @@
   unarchive:
     src: "{{ nginx_lua_prometheus_url }}"
     dest: "{{ nginx_download_dir }}"
-    remote_src: yes
+    remote_src: true
 
 - name: NGINX | Copy prometheus lib
   copy:
