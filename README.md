@@ -24,7 +24,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.7.5.0 version installed.
+Ansible 2.7.8.0 version installed.
 Inventory destination should be a Debian environment.
 
 For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
@@ -86,8 +86,8 @@ See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecul
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.7.5.0-green.svg)
-![Molecule](https://img.shields.io/badge/molecule-2.19.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.7.8.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-2.20.0-green.svg)
 
 ## Versioning
 
@@ -103,7 +103,7 @@ See also the list of [contributors](https://github.com/idealista/nginx_role/cont
 
 ## License
 
-![Apache 2.0 Licence](https://img.shields.io/hexpm/l/plug.svg)
+![Apache 2.0 License](https://img.shields.io/hexpm/l/plug.svg)
 
 This project is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license - see the [LICENSE](LICENSE) file for details.
 
