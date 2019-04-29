@@ -42,7 +42,8 @@
 
 - name: NGINX | Define External modules options
   set_fact:
-    nginx_external_modules_str: "{{ nginx_external_modules_str | default('') }} {{ '--add-module=' + nginx_src_dir + '/' + item.name + '-nginx-module-' + item.version + ' ' }}"
+    nginx_external_modules_str: |
+      {{ nginx_external_modules_str | default('') }} {{ '--add-module=' + nginx_src_dir + '/' + item.name + '-nginx-module-' + item.version + ' ' }}
   loop: "{{ nginx_external_modules }}"
 
 - name: NGINX | Configure install

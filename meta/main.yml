@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  company: Idealista S.A.U.
+  author: Idealista S.A.U.
   description: Nginx server
   min_ansible_version: 2.7.5.0
   license: Apache 2.0
@@ -9,6 +9,6 @@ galaxy_info:
       versions:
         - jessie
         - stretch
-  categories:
+  galaxy_tags:
     - webserver
     - proxy
