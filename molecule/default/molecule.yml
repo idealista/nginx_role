@@ -7,8 +7,8 @@ lint:
   name: yamllint
 
 platforms:
-  - name: nginx-${MOLECULE_DISTRO:-debian9}
-    image: geerlingguy/docker-${MOLECULE_DISTRO:-debian9}-ansible
+  - name: nginx-${MOLECULE_DISTRO:-stretch}
+    image: debian:${MOLECULE_DISTRO:-stretch}
     privileged: true
     capabilities:
       - SYS_ADMIN
