@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 
+### Fixed
+- *[#59](https://github.com/idealista/nginx_role/issues/53) Fix reload command in service file* @jnogol
+
+## [2.0.0](https://github.com/idealista/nginx_role/tree/2.0.0) (2019-02-18)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/1.8.0...2.0.0)
+
 ### Changed
 - *[#53](https://github.com/idealista/nginx_role/issues/53) Rename role using underscore* @jmonterrubio
 - *[#51](https://github.com/idealista/nginx_role/issues/51) Set 2.7 as min ansible version* @jmonterrubio
@@ -11,7 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - *Set 1.14.2 as default nginx version* @jmonterrubio
 - *Configurable nginx external modules* @jmonterrubio
 
-## [1.8.0](https://github.com/idealista/nginx_role/tree/1.8.0) (2018-2-27)
+## [1.8.0](https://github.com/idealista/nginx_role/tree/1.8.0) (2018-02-27)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/1.7.0...1.8.0)
 
 ### Added
@@ -20,7 +26,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Changed
 - *[#48](https://github.com/idealista/nginx_role/issues/48) Make logrotate optional* @jnogol
 
-## [1.7.0](https://github.com/idealista/nginx_role/tree/1.7.0) (2018-2-23)
+## [1.7.0](https://github.com/idealista/nginx_role/tree/1.7.0) (2018-02-23)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/1.6.0...1.7.0)
 
 ### Added

@@ -9,8 +9,8 @@ install:
   - pipenv install -r test-requirements.txt --python 2.7
 env:
   matrix:
-    - MOLECULE_DISTRO: debian8
-    - MOLECULE_DISTRO: debian9
+    - MOLECULE_DISTRO: jessie
+    - MOLECULE_DISTRO: stretch
 script:
   - export MOLECULE_DISTRO=${MOLECULE_DISTRO}
   - pipenv run molecule test
