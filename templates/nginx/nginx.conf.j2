@@ -1,0 +1,48 @@
+worker_processes {{ nginx_workers }};
+error_log  {{ nginx_error_log }};
+{% if nginx_worker_rlimit_nofile is defined %}
+worker_rlimit_nofile {{ nginx_worker_rlimit_nofile }};
+{% endif %}
+
+events {
+    worker_connections {{ nginx_connections }};
+    use epoll;
+    multi_accept on;
+}
+
+http {
+    open_file_cache max=200000 inactive=20s;
+    open_file_cache_valid 30s;
+    open_file_cache_min_uses 2;
+    open_file_cache_errors on;
+
+    client_max_body_size {{ nginx_client_max_body_size }};
+
+    include mime.types;
+
+    default_type  application/octet-stream;
+    sendfile  on;
+    keepalive_timeout {{ nginx_keepalive_timeout }};
+    keepalive_requests {{ nginx_keepalive_requests }};
+    reset_timedout_connection on;
+
+    proxy_buffering on;
+    proxy_buffers 8 4k;
+
+    gzip on;
+    gzip_comp_level 2;
+    gzip_min_length 1k;
+
+    tcp_nodelay on;
+    tcp_nopush on;
+
+    log_format  main '$remote_addr - [$time_local] ($request_time) $status '
+        '"$request" $request_length $body_bytes_sent '
+        '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  {{ nginx_access_log }}  main;
+
+    include {{ nginx_conf_path }}/sites-enabled/*;
+
+    include {{ nginx_conf_path }}/extra-conf/*;
+}

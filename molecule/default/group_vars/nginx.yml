@@ -1,6 +1,8 @@
 nginx_extra_servers_path: "{{ playbook_dir }}/files"
 nginx_extra_servers_template_path: "{{ playbook_dir }}/templates/sites"
 
+nginx_conf_template_path: "{{ playbook_dir }}/templates/conf"
+
 web2_port: 8888
 nginx_prometheus_metrics_port: 9888
 nginx_prometheus_metrics_path: mymetrics

@@ -2,7 +2,7 @@
 galaxy_info:
   author: Idealista S.A.U.
   description: Nginx server
-  min_ansible_version: 2.7.8.0
+  min_ansible_version: 2.8.4
   license: Apache 2.0
   platforms:
     - name: Debian
