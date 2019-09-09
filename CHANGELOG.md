@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+## [2.1.0](https://github.com/idealista/nginx_role/tree/2.1.0) (2019-09-09)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.0...2.0.1)
 ### Fixed
 - *[#62](https://github.com/idealista/nginx_role/issues/62) Fix wrong configuration of proxy_buffer_size in nginx.conf* @adrian-arapiles
 ### Added
