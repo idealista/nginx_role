@@ -85,16 +85,20 @@ log_by_lua_block {
                 upstream_bytes_sent = getWithIndex(ngx.var.upstream_bytes_sent, idx)
             end
             http_upstream_requests:inc(1, {addr, upstream_status})
-            http_upstream_response_time:observe(tonumber(upstream_response_time), {addr})
-            http_upstream_header_time:observe(tonumber(upstream_header_time), {addr})
+            if upstream_response_time ~= nil and tonumber(upstream_response_time) ~= nil then
+                http_upstream_response_time:observe(tonumber(upstream_response_time), {addr})
+            end
+            if http_upstream_header_time ~= nil and tonumber(http_upstream_header_time) ~= nil then
+                http_upstream_header_time:observe(tonumber(upstream_header_time), {addr})
+            end
             -- ngx.config.nginx_version >= 1011004
-            if upstream_first_byte_time ~= nil then
+            if upstream_first_byte_time ~= nil and tonumber(upstream_first_byte_time) ~= nil then
                 http_upstream_first_byte_time:observe(tonumber(upstream_first_byte_time), {addr})
             end
-            if upstream_connect_time ~= nil then
+            if upstream_connect_time ~= nil and tonumber(upstream_connect_time) ~= nil then
                 http_upstream_connect_time:observe(tonumber(upstream_connect_time), {addr})
             end
-            if upstream_session_time ~= nil then
+            if upstream_session_time ~= nil and tonumber(upstream_session_time) ~= nil then
                 http_upstream_session_time:observe(tonumber(upstream_session_time), {addr})
             end
             if upstream_bytes_received ~= nil then
