@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+
+## [2.1.1](https://github.com/idealista/nginx_role/tree/2.1.1) (2019-10-19)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.1...2.1.0)
+### Fixed
+- *[#65](https://github.com/idealista/nginx_role/issues/65) No value passed error in prometheus metrics* @jmonterrubio
+
 ## [2.1.0](https://github.com/idealista/nginx_role/tree/2.1.0) (2019-09-09)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.0...2.0.1)
 ### Fixed
