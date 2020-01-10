@@ -3,6 +3,7 @@
   user:
     name: "{{ nginx_user }}"
     groups: "{{ nginx_groups|join(',') }}"
+    system: true
     append: true
 
 - name: NGINX | Create log directory
