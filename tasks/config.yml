@@ -5,6 +5,7 @@
     groups: "{{ nginx_groups|join(',') }}"
     system: true
     append: true
+    create_home: false
 
 - name: NGINX | Create log directory
   file:
