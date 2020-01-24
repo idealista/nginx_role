@@ -23,6 +23,8 @@ file:
     group: {{ nginx_group }}
     exists: true
     filetype: directory
+  /home/{{ nginx_user }}:
+    exists: false
   /run/nginx:
     owner: root
     group: root
