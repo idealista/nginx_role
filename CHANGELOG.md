@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 ### Added
-- *Add system:true on create nginx_user to avoid get UID on system range* @adrian-arapiles
+- *Add system:true on create nginx_user to get UID on system range* @adrian-arapiles
 - *Add goss test to check nginx_user UId have system range of uids* @adrian-arapiles
 ### Fixed
 - *Fix indent for goss http test of nginx metrics prometheus* @adrian-arapiles
