@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 
+## [2.2.0](https://github.com/idealista/nginx_role/tree/2.2.0) (2020-01-24)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.2.0...2.1.1)
+### Added
+- *Add system:true on create nginx_user to get UID on system range* @adrian-arapiles
+- *Add goss test to check nginx_user UId have system range of uids* @adrian-arapiles
+### Fixed
+- *Fix indent for goss http test of nginx metrics prometheus* @adrian-arapiles
+- *[#57](https://github.com/idealista/nginx_role/issues/57) Disable create home for user nginx.*
+
 ## [2.1.1](https://github.com/idealista/nginx_role/tree/2.1.1) (2019-10-19)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.1...2.1.0)
 ### Fixed
