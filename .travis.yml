@@ -1,16 +1,17 @@
 ---
 language: python
-python: "2.7.13"
-sudo: required
+python: "3.7"
+os: linux
 services:
   - docker
 install:
   - pip install pipenv
-  - pipenv install -r test-requirements.txt --python 2.7
+  - pipenv sync
 env:
   matrix:
     - MOLECULE_DISTRO: jessie
     - MOLECULE_DISTRO: stretch
+    - MOLECULE_DISTRO: buster
 script:
   - export MOLECULE_DISTRO=${MOLECULE_DISTRO}
   - pipenv run molecule test

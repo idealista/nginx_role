@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 
+### Added
+- *[#70](https://github.com/idealista/nginx_role/issues/70) Support metrics for debian buster* @jmonterrubio
+
 ## [2.2.0](https://github.com/idealista/nginx_role/tree/2.2.0) (2020-01-24)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/2.2.0...2.1.1)
 ### Added

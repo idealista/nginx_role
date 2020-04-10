@@ -2,32 +2,29 @@
 
 - name: NGINX | Installing lua dependencies
   apt:
-    pkg: "{{ lua_required_libs }}"
+    pkg: "{{ luajit_required_libs }}"
     state: present
-  loop: "{{ lua_required_libs }}"
+  loop: "{{ luajit_required_libs }}"
 
-- name: NGINX | Check lua version
-  command: lua -v
-  register: lua_check
+- name: NGINX | Check luaJIT version
+  command: luajit -v
+  register: luaJIT_check
   changed_when: false
   ignore_errors: true
 
-- name: NGINX | Download lua
+- name: NGINX | Download luaJIT
   unarchive:
     copy: false
-    src: "{{ lua_url }}"
-    dest: /tmp
+    src: "{{ luaJIT_url }}"
+    dest: "{{ nginx_download_dir }}"
   when: nginx_force_reinstall or
-        lua_check is failed or
-        "Lua " + lua_version not in lua_check.stderr
+        luaJIT_check is failed or
+        "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
 
-- name: NGINX | Build lua
+- name: NGINX | Build luaJIT
   make:
-    chdir: "/tmp/lua-{{ lua_version }}"
-    target: "{{ item }}"
-  loop:
-    - linux
-    - install
+    chdir: "{{ nginx_download_dir }}/luajit2-{{ luaJIT_version }}"
+    target: install
   when: nginx_force_reinstall or
-        lua_check is failed or
-        "Lua " + lua_version not in lua_check.stderr
+        luaJIT_check is failed or
+        "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout

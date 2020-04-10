@@ -53,19 +53,35 @@ nginx_builtin_modules:
 
 ## External modules
 nginx_external_modules:
-  - name: headers-more
+  - name: headers-more-nginx-module
     version: '0.33'
     url: https://github.com/openresty/headers-more-nginx-module/archive/v0.33.tar.gz
-  - name: lua
-    version: '0.10.13'
-    url: https://github.com/openresty/lua-nginx-module/archive/v0.10.13.tar.gz
+  - name: lua-nginx-module  # Remove this module if metrics are disabled
+    version: '0.10.15'
+    url: https://github.com/openresty/lua-nginx-module/archive/v0.10.15.tar.gz
+  - name: ngx_devel_kit
+    version: '0.3.1'  # Remove this module if metrics are disabled
+    url: https://github.com/vision5/ngx_devel_kit/archive/v0.3.1.tar.gz
 
-# Lua
-lua_version: 5.1.5
+## Nginx compile time options
+## https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/
+nginx_compile_time_options:
+  - { option: "prefix", value: "{{ nginx_install_bin_path }}" }
+  - { option: "user", value: "{{ nginx_user }}" }
+  - { option: "group", value: "{{ nginx_group }}" }
+  - { option: "conf-path", value: "{{ nginx_conf }}" }
+  - { option: "error-log-path", value: "{{ nginx_error_log }}" }
+  - { option: "http-log-path", value: "{{ nginx_access_log }}" }
+  - { option: "pid-path", value: /run/nginx/nginx.pid }
+  - { option: "lock-path", value: /var/lock/nginx.lock }
+  - { option: "with-ld-opt", value: "-Wl,-rpath,/usr/local/lib" }  # Disable this option if metrics are disabled
+
+# LuaJIT
+luaJIT_version: '2.1-20200102'
 
 ## Metrics
 nginx_lua_prometheus_version: '0.20181120'
-nginx_prometheus_metrics_enabled: true  # Remove lua module if metrics are disabled
+nginx_prometheus_metrics_enabled: true  # Remove lua and ngx_devel_kit modules if metrics are disabled
 nginx_prometheus_metrics_port: 9145
 nginx_prometheus_metrics_role: nginx
 nginx_prometheus_metrics_path: metrics

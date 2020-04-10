@@ -43,13 +43,16 @@
 - name: NGINX | Define External modules options
   set_fact:
     nginx_external_modules_str: |
-      {{ nginx_external_modules_str | default('') }} {{ '--add-module=' + nginx_src_dir + '/' + item.name + '-nginx-module-' + item.version + ' ' }}
+      {{ nginx_external_modules_str | default('') }} {{ '--add-module=' + nginx_src_dir + '/' + item.name + '-' + item.version + ' ' }}
   loop: "{{ nginx_external_modules }}"
 
 - name: NGINX | Configure install
   command: ./configure {{ nginx_compile_time_options_str }} {{ nginx_builtin_modules_str }} {{ nginx_external_modules_str }}
   args:
     chdir: "{{ nginx_src_dir }}/nginx-{{ nginx_version }}"
+  environment:
+    LUAJIT_LIB: /usr/local/lib
+    LUAJIT_INC: "{{'/usr/local/include/luajit-' + luaJIT_version[:3]}}"
   when: nginx_force_reinstall or
         nginx_check is failed or
         "nginx/" + nginx_version not in nginx_check.stderr
