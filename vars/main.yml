@@ -1,4 +1,7 @@
 ---
+luajit_required_libs:
+  - build-essential
+
 nginx_required_libs:
   - build-essential
   - libpcre3-dev
@@ -6,22 +9,6 @@ nginx_required_libs:
   - zlib1g-dev
 nginx_url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
 
-lua_required_libs:
-  - build-essential
-  - libreadline-dev
-  - lib32ncurses5-dev
-lua_url: http://www.lua.org/ftp/lua-{{ lua_version }}.tar.gz
+luaJIT_url: https://github.com/openresty/luajit2/archive/v{{ luaJIT_version }}.tar.gz
 
 nginx_lua_prometheus_url: https://github.com/knyar/nginx-lua-prometheus/archive/{{ nginx_lua_prometheus_version }}.tar.gz
-
-## Nginx compile time options
-## https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/
-nginx_compile_time_options:
-  - { option: "prefix", value: "{{ nginx_install_bin_path }}" }
-  - { option: "user", value: "{{ nginx_user }}" }
-  - { option: "group", value: "{{ nginx_group }}" }
-  - { option: "conf-path", value: "{{ nginx_conf }}" }
-  - { option: "error-log-path", value: "{{ nginx_error_log }}" }
-  - { option: "http-log-path", value: "{{ nginx_access_log }}" }
-  - { option: "pid-path", value: /run/nginx/nginx.pid }
-  - { option: "lock-path", value: /var/lock/nginx.lock }

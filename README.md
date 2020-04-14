@@ -24,7 +24,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.8.4 version installed.
+Ansible 2.8.6 version installed.
 Inventory destination should be a Debian environment.
 
 For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
@@ -76,8 +76,8 @@ Nginx: 1.14.* + lua_module_version: 0.10.13
 ## Testing
 
 ```
-$ pipenv install -r test-requirements.txt --python 2.7
-$ MOLECULE_DISTRO=(debian8|debian9) pipenv run molecule test
+$ pipenv sync
+$ MOLECULE_DISTRO=(jessie|stretch|buster) pipenv run molecule test
 ```
 
 Note: Debian9 (Debian Stretch) will be used as default linux distro if none is provided.
@@ -86,8 +86,8 @@ See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecul
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.7.8.0-green.svg)
-![Molecule](https://img.shields.io/badge/molecule-2.20.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.8.6.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-2.22.0-green.svg)
 
 ## Versioning
 
