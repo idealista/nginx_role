@@ -7,8 +7,8 @@ lint:
   name: yamllint
 
 platforms:
-  - name: nginx-${MOLECULE_DISTRO:-stretch}
-    image: debian:${MOLECULE_DISTRO:-stretch}
+  - name: nginx-${MOLECULE_DISTRO:-stretch}-slim
+    image: debian:${MOLECULE_DISTRO:-stretch}-slim
     privileged: true
     capabilities:
       - SYS_ADMIN
@@ -16,6 +16,9 @@ platforms:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     groups:
       - nginx
+    tmpfs:
+      - '/run'
+      - '/run/lock'
     command: '/lib/systemd/systemd'
 
 provisioner:

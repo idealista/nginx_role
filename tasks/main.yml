@@ -2,7 +2,9 @@
 
 - name: NGINX | Dependencies
   import_tasks: dependencies.yml
-  when: nginx_prometheus_metrics_enabled
+  when:
+    - nginx_prometheus_metrics_enabled
+    - luaJIT_version is defined
   tags:
     - nginx-dependencies
 
