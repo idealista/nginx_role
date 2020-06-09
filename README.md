@@ -88,6 +88,7 @@ See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecul
 
 ![Ansible](https://img.shields.io/badge/ansible-2.9.9-green.svg)
 ![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.11-green.svg
 
 ## Versioning
 

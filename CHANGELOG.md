@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+### Changed
+- *[#56](https://github.com/idealista/nginx_role/issues/56) Added ca-certificates; relocated vars* @frantsao
+- *[#74](https://github.com/idealista/nginx_role/issues/74) Minor cleanup for debian buster; upgraded to molecule 3 and gos 0.13* @frantsao
+
 ## [3.0.0](https://github.com/idealista/nginx_role/tree/3.0.0) (2020-04-14)
 ### Added
 - *[#70](https://github.com/idealista/nginx_role/issues/70) Support metrics for debian buster* @jmonterrubio
