@@ -7,8 +7,8 @@ lint: |
   yamllint .
   ansible-lint .
 platforms:
-  - name: nginx-${MOLECULE_DISTRO:-buster}-slim
-    image: debian:${MOLECULE_DISTRO:-buster}-slim
+  - name: nginx-${MOLECULE_DISTRO:-buster-slim}
+    image: debian:${MOLECULE_DISTRO:-buster-slim}
     privileged: true
     capabilities:
       - SYS_ADMIN
