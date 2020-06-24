@@ -3,16 +3,20 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+
+## [3.1.0](https://github.com/idealista/nginx_role/tree/3.1.0) (2020-06-24)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/3.0.0...3.1.0)
 ### Changed
 - *[#56](https://github.com/idealista/nginx_role/issues/56) Added ca-certificates; relocated vars* @frantsao
 - *[#74](https://github.com/idealista/nginx_role/issues/74) Minor cleanup for debian buster; upgraded to molecule 3 and gos 0.13* @frantsao
 
 ## [3.0.0](https://github.com/idealista/nginx_role/tree/3.0.0) (2020-04-14)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.2.0...3.0.0)
 ### Added
 - *[#70](https://github.com/idealista/nginx_role/issues/70) Support metrics for debian buster* @jmonterrubio
 
 ## [2.2.0](https://github.com/idealista/nginx_role/tree/2.2.0) (2020-01-24)
-[Full Changelog](https://github.com/idealista/nginx_role/compare/2.2.0...2.1.1)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.1...2.2.0)
 ### Added
 - *Add system:true on create nginx_user to get UID on system range* @adrian-arapiles
 - *Add goss test to check nginx_user UId have system range of uids* @adrian-arapiles
@@ -21,12 +25,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - *[#57](https://github.com/idealista/nginx_role/issues/57) Disable create home for user nginx.*
 
 ## [2.1.1](https://github.com/idealista/nginx_role/tree/2.1.1) (2019-10-19)
-[Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.1...2.1.0)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.0...2.1.1)
 ### Fixed
 - *[#65](https://github.com/idealista/nginx_role/issues/65) No value passed error in prometheus metrics* @jmonterrubio
 
 ## [2.1.0](https://github.com/idealista/nginx_role/tree/2.1.0) (2019-09-09)
-[Full Changelog](https://github.com/idealista/nginx_role/compare/2.1.0...2.0.1)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/2.0.1...2.1.0)
 ### Fixed
 - *[#62](https://github.com/idealista/nginx_role/issues/62) Fix wrong configuration of proxy_buffer_size in nginx.conf* @adrian-arapiles
 ### Added
