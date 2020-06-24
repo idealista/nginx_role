@@ -1,7 +1,7 @@
 ---
 ## General
 
-nginx_version: 1.14.2
+nginx_version: 1.18.0
 
 ## Service options
 
@@ -25,6 +25,15 @@ nginx_keepalive_requests: 100000
 nginx_client_max_body_size: 50M
 
 nginx_limit_no_file: 1024
+
+# Installation
+nginx_required_libs:
+  - build-essential
+  - libpcre3-dev
+  - libssl-dev
+  - zlib1g-dev
+  - ca-certificates
+nginx_url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
 
 # Files & Paths
 nginx_download_dir: "/tmp"
@@ -90,3 +99,10 @@ metrics_templates_path: "{{ playbook_dir }}/templates/metrics"
 ## Miscellaneous
 # Set true to force the download and installation of the package
 nginx_force_reinstall: false
+
+luajit_required_libs:
+  - build-essential
+
+luaJIT_url: https://github.com/openresty/luajit2/archive/v{{ luaJIT_version }}.tar.gz
+
+nginx_lua_prometheus_url: https://github.com/knyar/nginx-lua-prometheus/archive/{{ nginx_lua_prometheus_version }}.tar.gz

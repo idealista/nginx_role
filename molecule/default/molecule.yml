@@ -3,12 +3,12 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
-
+lint: |
+  yamllint .
+  ansible-lint .
 platforms:
-  - name: nginx-${MOLECULE_DISTRO:-stretch}-slim
-    image: debian:${MOLECULE_DISTRO:-stretch}-slim
+  - name: nginxtest
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     privileged: true
     capabilities:
       - SYS_ADMIN
@@ -28,6 +28,4 @@ provisioner:
 scenario:
   name: default
 verifier:
-  name: goss
-  lint:
-    name: yamllint
+  name: ansible
