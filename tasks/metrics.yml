@@ -7,11 +7,19 @@
 
 - name: NGINX | Copy prometheus lib
   copy:
-    src: "{{ nginx_download_dir }}/nginx-lua-prometheus-{{ nginx_lua_prometheus_version }}/prometheus.lua"
-    dest: "{{ nginx_conf_path }}/plugins/prometheus.lua"
+    src: "{{ nginx_download_dir }}/nginx-lua-prometheus-{{ nginx_lua_prometheus_version }}/{{ item }}"
+    dest: "{{ nginx_conf_path }}/plugins/{{ item }}"
     remote_src: true
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
+  loop: "{{ nginx_lua_scripts }}"
+
+- name: NGINX | Get prometheus lua external dependencies
+  unarchive:
+    copy: false
+    src: "{{ item.url }}"
+    dest: "{{ nginx_conf_path }}/plugins"
+  loop: "{{ nginx_lua_external_dependencies }}"
 
 - name: NGINX | Copy prometheus metric server conf
   template:

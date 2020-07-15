@@ -66,8 +66,11 @@ nginx_external_modules:
     version: '0.33'
     url: https://github.com/openresty/headers-more-nginx-module/archive/v0.33.tar.gz
   - name: lua-nginx-module  # Remove this module if metrics are disabled
-    version: '0.10.15'
-    url: https://github.com/openresty/lua-nginx-module/archive/v0.10.15.tar.gz
+    version: '0.10.17'
+    url: https://github.com/openresty/lua-nginx-module/archive/v0.10.17.tar.gz
+  - name: stream-lua-nginx-module  # Remove this module if metrics are disabled
+    version: '0.0.8'
+    url: https://github.com/openresty/stream-lua-nginx-module/archive/v0.0.8.tar.gz
   - name: ngx_devel_kit
     version: '0.3.1'  # Remove this module if metrics are disabled
     url: https://github.com/vision5/ngx_devel_kit/archive/v0.3.1.tar.gz
@@ -89,12 +92,24 @@ nginx_compile_time_options:
 luaJIT_version: '2.1-20200102'
 
 ## Metrics
-nginx_lua_prometheus_version: '0.20181120'
+nginx_lua_prometheus_version: '0.20200523'
 nginx_prometheus_metrics_enabled: true  # Remove lua and ngx_devel_kit modules if metrics are disabled
 nginx_prometheus_metrics_port: 9145
 nginx_prometheus_metrics_role: nginx
 nginx_prometheus_metrics_path: metrics
 metrics_templates_path: "{{ playbook_dir }}/templates/metrics"
+nginx_lua_scripts:
+  - prometheus.lua
+  - prometheus_resty_counter.lua
+  - prometheus_keys.lua
+
+nginx_lua_external_dependencies:
+  - name: lua-resty-core
+    version: '0.1.19'  # Remove this module if metrics are disabled
+    url: https://github.com/openresty/lua-resty-core/archive/v0.1.19.tar.gz
+  - name: lua-resty-lrucache
+    version: '0.10'  # Remove this module if metrics are disabled
+    url: https://github.com/openresty/lua-resty-lrucache/archive/v0.10.tar.gz
 
 ## Miscellaneous
 # Set true to force the download and installation of the package
