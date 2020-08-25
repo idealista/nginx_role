@@ -25,6 +25,7 @@ nginx_keepalive_requests: 100000
 nginx_client_max_body_size: 50M
 
 nginx_limit_no_file: 1024
+nginx_private_tmp: true
 
 # Installation
 nginx_required_libs:
