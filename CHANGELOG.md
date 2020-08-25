@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+- *[#78](https://github.com/idealista/nginx_role/issues/78) parametrizing private tmp var to solve Debian 10 compatibilities* @gabyalises
 
 ## [3.1.0](https://github.com/idealista/nginx_role/tree/3.1.0) (2020-06-24)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/3.0.0...3.1.0)
