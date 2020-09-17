@@ -95,7 +95,7 @@ nginx_prometheus_metrics_enabled: true  # Remove lua and ngx_devel_kit modules i
 nginx_prometheus_metrics_port: 9145
 nginx_prometheus_metrics_role: nginx
 nginx_prometheus_metrics_path: metrics
-metrics_templates_path: "{{ playbook_dir }}/templates/metrics"
+nginx_metrics_templates_path: metrics  # "{{ playbook_dir }}/templates/metrics"
 
 ## Miscellaneous
 # Set true to force the download and installation of the package

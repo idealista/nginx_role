@@ -22,7 +22,7 @@
 
 - name: NGINX | Copy prometheus server config
   template:
-    src: metrics/prometheus.conf.j2
+    src: "{{ nginx_metrics_templates_path }}/prometheus.conf.j2"
     dest: "{{ nginx_extra_conf_path }}/prometheus.conf"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
