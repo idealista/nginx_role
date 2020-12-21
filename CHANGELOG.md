@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/3.3.0...3.4.0)
+## [3.4.0](https://github.com/idealista/nginx_role/tree/3.4.0) (2020-12-21)
 ### Added
 - *[#85](https://github.com/idealista/nginx_role/issues/85) Use get_url instead of unarchive to have timeout configuration* @jperera
 
