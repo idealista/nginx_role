@@ -1,7 +1,15 @@
 ---
-- name: NGINX | Get nginx-lua-prometheus
+
+- name: NGINX | Download nginx-lua-prometheus
+  get_url:
+    url: "{{ nginx_lua_prometheus_url }}"
+    dest: "{{ nginx_download_dir }}"
+    timeout: "{{ nginx_download_timeout }}"
+  register: nginx_downloaded_lua_prometheus_path
+
+- name: NGINX | Decompress nginx-lua-prometheus
   unarchive:
-    src: "{{ nginx_lua_prometheus_url }}"
+    src: "{{ nginx_downloaded_lua_prometheus_path.dest }}"
     dest: "{{ nginx_download_dir }}"
     remote_src: true
 
@@ -9,9 +17,9 @@
   copy:
     src: "{{ nginx_download_dir }}/nginx-lua-prometheus-{{ nginx_lua_prometheus_version }}/prometheus.lua"
     dest: "{{ nginx_conf_path }}/plugins/prometheus.lua"
-    remote_src: true
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
+    remote_src: true
 
 - name: NGINX | Copy prometheus metric server conf
   template:

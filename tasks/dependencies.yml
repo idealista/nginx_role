@@ -13,13 +13,23 @@
   ignore_errors: true
 
 - name: NGINX | Download luaJIT
-  unarchive:
-    copy: false
-    src: "{{ luaJIT_url }}"
+  get_url:
+    url: "{{ luaJIT_url }}"
     dest: "{{ nginx_download_dir }}"
+    timeout: "{{ nginx_download_timeout }}"
   when: nginx_force_reinstall or
-        luaJIT_check is failed or
-        "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
+    luaJIT_check is failed or
+    "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
+  register: nginx_downloaded_lua_jit_path
+
+- name: NGINX | Decompress luaJIT
+  unarchive:
+    src: "{{ nginx_downloaded_lua_jit_path.dest }}"
+    dest: "{{ nginx_download_dir }}"
+    remote_src: true
+  when: nginx_force_reinstall or
+    luaJIT_check is failed or
+    "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
 
 - name: NGINX | Build luaJIT
   make:

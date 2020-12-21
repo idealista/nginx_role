@@ -38,6 +38,7 @@ nginx_url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
 
 # Files & Paths
 nginx_download_dir: "/tmp"
+nginx_download_timeout: 20
 nginx_src_dir: "/usr/src"
 nginx_log_path: "/var/log/nginx"
 nginx_access_log: "{{ nginx_log_path }}/access.log"
