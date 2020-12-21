@@ -11,15 +11,26 @@
   changed_when: false
   ignore_errors: true
 
-- name: NGINX | Get external module
-  unarchive:
-    copy: false
-    src: "{{ item.url }}"
-    dest: "{{ nginx_src_dir }}"
+- name: NGINX | Download external modules
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ nginx_download_dir }}"
+    timeout: "{{ nginx_download_timeout }}"
   loop: "{{ nginx_external_modules }}"
   when: nginx_force_reinstall or
-        nginx_check is failed or
-        "nginx/" + nginx_version not in nginx_check.stderr
+    nginx_check is failed or
+    "nginx/" + nginx_version not in nginx_check.stderr
+  register: nginx_external_modules_paths
+
+- name: NGINX | Decompress external modules
+  unarchive:
+    copy: false
+    src: "{{ item.dest }}"
+    dest: "{{ nginx_src_dir }}"
+  loop: "{{ nginx_external_modules_paths.results }}"
+  when: nginx_force_reinstall or
+    nginx_check is failed or
+    "nginx/" + nginx_version not in nginx_check.stderr
 
 - name: NGINX | Untar nginx
   unarchive:

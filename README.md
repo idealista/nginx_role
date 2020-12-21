@@ -77,10 +77,10 @@ Nginx: 1.14.* + lua_module_version: 0.10.13
 
 ```
 $ pipenv sync
-$ MOLECULE_DISTRO=(jessie|stretch|buster) pipenv run molecule test
+$ MOLECULE_DISTRO=(debian:jessie-slim|debian:stretch-slim|debian:buster-slim) pipenv run molecule test
 ```
 
-Note: Debian9 (Debian Stretch) will be used as default linux distro if none is provided.
+Note: Debian10 (Debian Buster) will be used as default linux distro if none is provided.
 
 See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecule/default/molecule.yml) to check possible testing platforms.
 
