@@ -101,7 +101,7 @@ nginx_metrics_templates_path: metrics  # "{{ playbook_dir }}/templates/metrics"
 ## Miscellaneous
 # Set true to force the download and installation of the package
 nginx_force_reinstall: false
-
+nginx_server_names_hash_bucket_size: 64
 luajit_required_libs:
   - build-essential
 
