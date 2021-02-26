@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+
+## [3.5.0](https://github.com/idealista/nginx_role/tree/3.5.0) (2021-02-26)
+### Added
+- *[#88](https://github.com/idealista/nginx_role/issues/88) Add default server_names_hash_bucket_size* @ftsao
+- *[#88](https://github.com/idealista/nginx_role/issues/88) Updated test requirements* @ftsao
+- *[#88](https://github.com/idealista/nginx_role/issues/88) Added apt cache validation time* @ftsao
+
 [Full Changelog](https://github.com/idealista/nginx_role/compare/3.3.0...3.4.0)
 ## [3.4.0](https://github.com/idealista/nginx_role/tree/3.4.0) (2020-12-21)
 ### Added
