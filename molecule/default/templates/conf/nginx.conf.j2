@@ -15,6 +15,7 @@ http {
     open_file_cache_valid 30s;
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
+    server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }};
 
     client_max_body_size {{ nginx_client_max_body_size }};
 
@@ -27,8 +28,7 @@ http {
     reset_timedout_connection on;
 
     proxy_buffering on;
-    proxy_buffers 8 4m;
-    proxy_buffer_size 4m;
+    proxy_buffers 8 4k;
 
     gzip on;
     gzip_comp_level 2;
@@ -38,8 +38,8 @@ http {
     tcp_nopush on;
 
     log_format  main '$remote_addr - [$time_local] ($request_time) $status '
-    '"$request" $request_length $body_bytes_sent '
-    '"$http_user_agent" "$http_x_forwarded_for"';
+        '"$request" $request_length $body_bytes_sent '
+        '"$http_user_agent" "$http_x_forwarded_for"';
 
     access_log  {{ nginx_access_log }}  main;
 
