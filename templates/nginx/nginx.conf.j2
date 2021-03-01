@@ -15,7 +15,7 @@ http {
     open_file_cache_valid 30s;
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
-    server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size };
+    server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }};
 
     client_max_body_size {{ nginx_client_max_body_size }};
 
