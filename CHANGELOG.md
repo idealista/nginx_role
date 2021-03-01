@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 
+## [3.5.1](https://github.com/idealista/nginx_role/tree/3.5.1) (2021-03-01)
+### Fixed
+- *[#91](https://github.com/idealista/nginx_role/issues/91) Fix nginx.conf template and molecule tests* @ftsao
+
 ## [3.5.0](https://github.com/idealista/nginx_role/tree/3.5.0) (2021-02-26)
 ### Added
 - *[#88](https://github.com/idealista/nginx_role/issues/88) Add default server_names_hash_bucket_size* @ftsao
