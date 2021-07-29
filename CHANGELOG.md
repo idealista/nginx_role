@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+### Fixed
+- *[#98](https://github.com/idealista/nginx_role/issues/98) Fix nginx_group not set as primary group* @caldito
 
 ## [3.5.1](https://github.com/idealista/nginx_role/tree/3.5.1) (2021-03-01)
 ### Fixed
