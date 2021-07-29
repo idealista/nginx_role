@@ -10,6 +10,9 @@ nginx_user: nginx
 nginx_group: nginx
 nginx_groups: []
 
+# Shell
+nginx_shell: /usr/sbin/nologin
+
 # start on boot
 nginx_service_enabled: true
 # current state: started, stopped
