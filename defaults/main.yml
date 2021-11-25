@@ -1,7 +1,7 @@
 ---
 ## General
 
-nginx_version: 1.18.0
+nginx_version: 1.20.2
 
 ## Service options
 

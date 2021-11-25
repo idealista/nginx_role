@@ -8,7 +8,7 @@ lint: |
   ansible-lint .
 platforms:
   - name: nginxtest
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
     privileged: true
     capabilities:
       - SYS_ADMIN
