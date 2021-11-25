@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "25fe5676c755fa629285b4ecf9b43ac9fbbce19dabd6e8f7a9092a299ffa553c"
+            "sha256": "78d319c873fdcef200ebd47dd393d3e13e2b306f40ee9fb2bac67dbd25b56756"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -354,13 +354,29 @@
             "index": "pypi",
             "version": "==3.5.2"
         },
+        "molecule-containers": {
+            "hashes": [
+                "sha256:338d9a81e7abe804cfe66c6f3ed99237a60136773b9c42b7420633b467871e26",
+                "sha256:cb23bbec5327d6def54de26a39ab1e46999d3014b546c1d2eaa6e22a98a2a2f1"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
+        },
         "molecule-docker": {
             "hashes": [
                 "sha256:e15133395f10dbf60f75125aae7145f47747fc7158f2317698885013796252bf",
                 "sha256:fc4fd84a0e98787c47b97e59bf9697bdeddfcacc67c09af271183b55e09a7d7a"
             ],
-            "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==1.1.0"
+        },
+        "molecule-podman": {
+            "hashes": [
+                "sha256:9efcc2714ab60ffe11844f10c7e10ef73fa322f54bd1ecf24c41f96d61530df6",
+                "sha256:d05c407759cd61c2f0576cfe04eb9c96a1cd1f0e52283aed7e3ed3e10c97eca2"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==1.0.1"
         },
         "packaging": {
             "hashes": [

@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Added
 - *[#101](https://github.com/idealista/nginx_role/issues/101) Debian 11 support* @sorobon
 ### Removed
-- Debian 8 (jessie) support
+- *[#101](https://github.com/idealista/nginx_role/issues/101)Debian 8 (jessie) support* @sorobon
 
 ## [3.5.2](https://github.com/idealista/nginx_role/tree/3.5.2) (2021-07-29)
 ### Fixed
