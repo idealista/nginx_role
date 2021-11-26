@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+
+## [4.0.0](https://github.com/idealista/nginx_role/tree/4.0.0) (2021-11-26)
+### Added
+- *[#101](https://github.com/idealista/nginx_role/issues/101) Debian 11 support* @sorobon
+### Removed
+- *[#101](https://github.com/idealista/nginx_role/issues/101)Debian 8 (jessie) support* @sorobon
+
 ## [3.5.2](https://github.com/idealista/nginx_role/tree/3.5.2) (2021-07-29)
 ### Fixed
 - *[#98](https://github.com/idealista/nginx_role/issues/98) Fix nginx_group not set as primary group* @caldito
