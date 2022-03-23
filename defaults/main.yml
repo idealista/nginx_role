@@ -29,6 +29,7 @@ nginx_client_max_body_size: 50M
 
 nginx_limit_no_file: 1024
 nginx_private_tmp: true
+# nginx_server_tokens: "off"
 
 # Installation
 nginx_required_libs:

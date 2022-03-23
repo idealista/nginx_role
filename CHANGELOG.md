@@ -4,21 +4,31 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 
+## [4.1.0](https://github.com/idealista/nginx_role/tree/4.1.0) (2022-03-23)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/4.0.0...4.1.0)
+### Changed
+- *[#105](https://github.com/idealista/nginx_role/issues/105) Updated nginx.conf template adding server_tokens var* @frantsao
+- *[#105](https://github.com/idealista/nginx_role/issues/105) Updated test dependencies* @frantsao
+
 ## [4.0.0](https://github.com/idealista/nginx_role/tree/4.0.0) (2021-11-26)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/3.5.2...4.0.0)
 ### Added
 - *[#101](https://github.com/idealista/nginx_role/issues/101) Debian 11 support* @sorobon
 ### Removed
 - *[#101](https://github.com/idealista/nginx_role/issues/101)Debian 8 (jessie) support* @sorobon
 
 ## [3.5.2](https://github.com/idealista/nginx_role/tree/3.5.2) (2021-07-29)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/3.5.1...3.5.2)
 ### Fixed
 - *[#98](https://github.com/idealista/nginx_role/issues/98) Fix nginx_group not set as primary group* @caldito
 
 ## [3.5.1](https://github.com/idealista/nginx_role/tree/3.5.1) (2021-03-01)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/3.5.0...3.5.1)
 ### Fixed
 - *[#91](https://github.com/idealista/nginx_role/issues/91) Fix nginx.conf template and molecule tests* @ftsao
 
 ## [3.5.0](https://github.com/idealista/nginx_role/tree/3.5.0) (2021-02-26)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/3.4.0...3.5.0)
 ### Added
 - *[#88](https://github.com/idealista/nginx_role/issues/88) Add default server_names_hash_bucket_size* @ftsao
 - *[#88](https://github.com/idealista/nginx_role/issues/88) Updated test requirements* @ftsao
