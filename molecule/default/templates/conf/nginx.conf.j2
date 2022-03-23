@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 worker_processes {{ nginx_workers }};
 error_log  {{ nginx_error_log }};
 {% if nginx_worker_rlimit_nofile is defined %}
@@ -16,6 +17,7 @@ http {
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
     server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }};
+    server_tokens {{ nginx_server_tokens|default('off') }};
 
     client_max_body_size {{ nginx_client_max_body_size }};
 
