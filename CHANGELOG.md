@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+### Changed
+- *[#105](https://github.com/idealista/nginx_role/issues/105) Updated nginx.conf template adding server_tokens var* @frantsao
+- *[#105](https://github.com/idealista/nginx_role/issues/105) Updated test dependencies* @frantsao
 
 ## [4.0.0](https://github.com/idealista/nginx_role/tree/4.0.0) (2021-11-26)
 ### Added

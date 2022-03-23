@@ -30,14 +30,12 @@
 
 - name: NGINX | Copy server config
   template:
-    src: "{{ nginx_conf_template_path }}/{{ item }}.j2"
-    dest: "{{ nginx_conf_path }}/{{ item }}"
+    src: "{{ nginx_conf_template_path }}/nginx.conf.j2"
+    dest: "{{ nginx_conf }}"
     owner: "{{ nginx_user }}"
     group: "{{ nginx_group }}"
     mode: "0640"
   notify: restart nginx
-  loop:
-    - nginx.conf
 
 - name: NGINX | Create config directories
   file:
