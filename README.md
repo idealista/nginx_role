@@ -61,6 +61,9 @@ Look to the [defaults vars](defaults/main.yml) file to see the possible configur
 The server is installed using the sources adding the headers-more module and lua module. You can add/remove compile built-in and
 external modules by setting `nginx_builtin_modules` and `nginx_external_modules` vars.
 
+You can activate ssl modules by `nginx_ssl_enabled` var (see molecule tests as example).
+To import your certificates, you need to place them at the path defined in `nginx_certificates_path`, they will be imported in `/etc/nginx/certificates`.
+
 You can add new servers to nginx by including your server as a file or as a template, setting the server
 files in the path defined by `nginx_extra_servers_path` or  `nginx_extra_servers_template_path` (see molecule tests as example).
 
