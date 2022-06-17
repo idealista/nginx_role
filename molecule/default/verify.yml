@@ -35,7 +35,15 @@
         src: "{{ item }}"
         dest: "{{ goss_test_directory }}/{{ item | basename }}"
       with_fileglob:
-        - "tests/test_*.yml"
+        - "tests/test_nginx.yml"
+    
+    - name: Copy Goss tests to remote (SSL)
+      template:
+        src: "{{ item }}"
+        dest: "{{ goss_test_directory }}/{{ item | basename }}"
+      with_fileglob:
+        - "tests/test_nginx_ssl.yml"
+      when: nginx_ssl_enabled
 
     - name: Register test files
       shell: "ls {{ goss_test_directory }}/test_*.yml"
