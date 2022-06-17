@@ -52,6 +52,12 @@
     nginx_builtin_modules_str: "{{ nginx_builtin_modules_str | default('') }} {{ '--with-' + item }}"
   loop: "{{ nginx_builtin_modules }}"
 
+- name: NGINX | Define SSL builtin modules
+  set_fact:
+    nginx_builtin_modules_str: "{{ nginx_builtin_modules_str | default('') }} {{ '--with-' + item }}"
+  loop: "{{ nginx_ssl_builtin_modules }}"
+  when: nginx_ssl_enabled
+
 - name: NGINX | Define External modules options
   set_fact:
     nginx_external_modules_str: |
