@@ -80,13 +80,14 @@ Nginx: 1.14.* + lua_module_version: 0.10.13
 
 ```
 $ pipenv sync
-$ MOLECULE_DISTRO=(debian:jessie-slim|debian:stretch-slim|debian:buster-slim) pipenv run molecule test
+$ MOLECULE_DISTRO=(debian:stretch-slim|debian:buster-slim|debian:bullseye-slim) pipenv run molecule test
 ```
 
-Note: Debian10 (Debian Buster) will be used as default linux distro if none is provided.
+Note: Debian11 (Debian Bullseye) will be used as default linux distro if none is provided.
 
 See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecule/default/molecule.yml) to check possible testing platforms.
 
+For testing purposes, a self signed certificate is being used and encripted via ansible-vault. Remember to never upload your [vault key](molecule/default/.secret.txt) in your repository for real projects.
 ## Built With
 
 ![Ansible](https://img.shields.io/badge/ansible-4.6.0-green.svg)
