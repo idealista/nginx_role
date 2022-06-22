@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+
+## [4.2.0](https://github.com/idealista/nginx_role/tree/4.2.0) (2022-06-22)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/4.1.0...4.2.0)
 ### Added
 - *[#108](https://github.com/idealista/nginx_role/issues/108) Added support for ssl module* @xtianae7
 
