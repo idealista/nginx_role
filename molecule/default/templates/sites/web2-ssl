@@ -1,0 +1,11 @@
+server {
+  listen {{ web2_https_port }} ssl;
+
+  ssl_certificate {{ nginx_conf_path }}/certificates/localhost.crt;
+  ssl_certificate_key {{ nginx_conf_path }}/certificates/localhost.key;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+  location / {
+    return 200 'OK';
+  }
+}

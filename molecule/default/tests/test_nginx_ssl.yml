@@ -1,0 +1,21 @@
+---
+file:
+  {{ nginx_conf_path }}/certificates:
+    owner: {{ nginx_user }}
+    group: {{ nginx_group }}
+    exists: true
+    filetype: directory
+  {{ nginx_conf_path }}/certificates/localhost.crt:
+    owner: {{ nginx_user }}
+    group: {{ nginx_group }}
+    exists: true
+    filetype: file
+  {{ nginx_conf_path }}/certificates/localhost.key:
+    owner: {{ nginx_user }}
+    group: {{ nginx_group }}
+    exists: true
+    filetype: file
+
+port:
+  tcp:{{ web2_https_port }}:
+    listening: true
