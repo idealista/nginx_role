@@ -61,6 +61,9 @@ Look to the [defaults vars](defaults/main.yml) file to see the possible configur
 The server is installed using the sources adding the headers-more module and lua module. You can add/remove compile built-in and
 external modules by setting `nginx_builtin_modules` and `nginx_external_modules` vars.
 
+You can activate ssl modules by `nginx_ssl_enabled` var (see molecule tests as example).
+To import your certificates, you need to place them at the path defined in `nginx_certificates_path`, they will be imported in `/etc/nginx/certificates`.
+
 You can add new servers to nginx by including your server as a file or as a template, setting the server
 files in the path defined by `nginx_extra_servers_path` or  `nginx_extra_servers_template_path` (see molecule tests as example).
 
@@ -77,13 +80,14 @@ Nginx: 1.14.* + lua_module_version: 0.10.13
 
 ```
 $ pipenv sync
-$ MOLECULE_DISTRO=(debian:jessie-slim|debian:stretch-slim|debian:buster-slim) pipenv run molecule test
+$ MOLECULE_DISTRO=(debian:stretch-slim|debian:buster-slim|debian:bullseye-slim) pipenv run molecule test
 ```
 
-Note: Debian10 (Debian Buster) will be used as default linux distro if none is provided.
+Note: Debian11 (Debian Bullseye) will be used as default linux distro if none is provided.
 
 See [molecule.yml](https://github.com/idealista/rsyslog_role/blob/master/molecule/default/molecule.yml) to check possible testing platforms.
 
+For testing purposes, a self signed certificate is being used and encripted via ansible-vault. Remember to never upload your [vault key](molecule/default/.secret.txt) in your repository for real projects.
 ## Built With
 
 ![Ansible](https://img.shields.io/badge/ansible-4.6.0-green.svg)

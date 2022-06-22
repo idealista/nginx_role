@@ -58,6 +58,29 @@
     group: root
   when: nginx_logrotate_enabled
 
+- name: NGINX | Configure SSL
+  block:
+    - name: NGINX | Create certificates directory
+      file:
+        path: "{{ nginx_conf_path }}/{{ item }}"
+        state: directory
+        owner: "{{ nginx_user }}"
+        group: "{{ nginx_group }}"
+      loop:
+        - certificates
+
+    - name: NGINX | Import certificates
+      copy:
+        src: "{{ item }}"
+        dest: "{{ nginx_conf_path }}/certificates/{{ item | basename | regex_replace('vault_') }}"
+        owner: "{{ nginx_user }}"
+        group: "{{ nginx_group }}"
+        mode: 0640
+      with_fileglob:
+        - "{{ nginx_certificates_path }}/*"
+      notify: reload nginx
+  when: nginx_ssl_enabled
+
 - name: NGINX | Copy servers files
   copy:
     src: "{{ item }}"

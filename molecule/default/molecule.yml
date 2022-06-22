@@ -25,6 +25,8 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  env:
+    ANSIBLE_VAULT_PASSWORD_FILE: './molecule/default/.secret.txt'
 scenario:
   name: default
 verifier:
