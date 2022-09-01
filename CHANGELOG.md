@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
 
+## [4.2.1](https://github.com/idealista/nginx_role/tree/4.2.1) (2022-09-01)
+[Full Changelog](https://github.com/idealista/nginx_role/compare/4.2.0...4.2.1)
+### Fixed
+- *[#111](https://github.com/idealista/nginx_role/issues/111) Fixed deletion of old server files configuration* @xtianae7
+
 ## [4.2.0](https://github.com/idealista/nginx_role/tree/4.2.0) (2022-06-22)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/4.1.0...4.2.0)
 ### Added
