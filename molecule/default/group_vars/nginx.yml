@@ -7,3 +7,5 @@ web2_port: 8888
 nginx_prometheus_metrics_port: 9888
 nginx_prometheus_metrics_path: mymetrics
 nginx_metrics_templates_path: "{{ playbook_dir }}/templates/metrics"
+nginx_proxy_buffer_size: 4m
+nginx_proxy_buffers: 8 4m
