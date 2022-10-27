@@ -100,7 +100,7 @@ nginx_compile_time_options:
   - { option: "with-ld-opt", value: "-Wl,-rpath,/usr/local/lib" }  # Disable this option if metrics are disabled
 
 # LuaJIT
-luaJIT_version: '2.1-20200102'
+luajit_version: '2.1-20200102'
 
 ## Metrics
 nginx_lua_prometheus_version: '0.20181120'
@@ -117,6 +117,6 @@ nginx_server_names_hash_bucket_size: 64
 luajit_required_libs:
   - build-essential
 
-luaJIT_url: https://github.com/openresty/luajit2/archive/v{{ luaJIT_version }}.tar.gz
+luajit_url: https://github.com/openresty/luajit2/archive/v{{ luajit_version }}.tar.gz
 
 nginx_lua_prometheus_url: https://github.com/knyar/nginx-lua-prometheus/archive/{{ nginx_lua_prometheus_version }}.tar.gz

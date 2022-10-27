@@ -9,18 +9,18 @@
 
 - name: NGINX | Check luaJIT version
   command: luajit -v
-  register: luaJIT_check
+  register: luajit_check
   changed_when: false
   ignore_errors: true
 
 - name: NGINX | Download luaJIT
   get_url:
-    url: "{{ luaJIT_url }}"
+    url: "{{ luajit_url }}"
     dest: "{{ nginx_download_dir }}"
     timeout: "{{ nginx_download_timeout }}"
   when: nginx_force_reinstall or
-    luaJIT_check is failed or
-    "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
+    luajit_check is failed or
+    "LuaJIT " + luajit_version[:3] not in luajit_check.stdout
   register: nginx_downloaded_lua_jit_path
 
 - name: NGINX | Decompress luaJIT
@@ -29,13 +29,13 @@
     dest: "{{ nginx_download_dir }}"
     remote_src: true
   when: nginx_force_reinstall or
-    luaJIT_check is failed or
-    "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
+    luajit_check is failed or
+    "LuaJIT " + luajit_version[:3] not in luajit_check.stdout
 
 - name: NGINX | Build luaJIT
   make:
-    chdir: "{{ nginx_download_dir }}/luajit2-{{ luaJIT_version }}"
+    chdir: "{{ nginx_download_dir }}/luajit2-{{ luajit_version }}"
     target: install
   when: nginx_force_reinstall or
-        luaJIT_check is failed or
-        "LuaJIT " + luaJIT_version[:3] not in luaJIT_check.stdout
+        luajit_check is failed or
+        "LuaJIT " + luajit_version[:3] not in luajit_check.stdout
