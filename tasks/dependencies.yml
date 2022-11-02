@@ -2,25 +2,25 @@
 
 - name: NGINX | Installing lua dependencies
   apt:
-    pkg: "{{ luajit_required_libs }}"
+    pkg: "{{ nginx_luajit_required_libs }}"
     state: present
     cache_valid_time: 3600
-  loop: "{{ luajit_required_libs }}"
+  loop: "{{ nginx_luajit_required_libs }}"
 
 - name: NGINX | Check luaJIT version
   command: luajit -v
-  register: luajit_check
+  register: nginx_luajit_check
   changed_when: false
   ignore_errors: true
 
 - name: NGINX | Download luaJIT
   get_url:
-    url: "{{ luajit_url }}"
+    url: "{{ nginx_luajit_url }}"
     dest: "{{ nginx_download_dir }}"
     timeout: "{{ nginx_download_timeout }}"
   when: nginx_force_reinstall or
-    luajit_check is failed or
-    "LuaJIT " + luajit_version[:3] not in luajit_check.stdout
+    nginx_luajit_check is failed or
+    "LuaJIT " + nginx_luajit_version[:3] not in nginx_luajit_check.stdout
   register: nginx_downloaded_lua_jit_path
 
 - name: NGINX | Decompress luaJIT
@@ -29,13 +29,13 @@
     dest: "{{ nginx_download_dir }}"
     remote_src: true
   when: nginx_force_reinstall or
-    luajit_check is failed or
-    "LuaJIT " + luajit_version[:3] not in luajit_check.stdout
+    nginx_luajit_check is failed or
+    "LuaJIT " + nginx_luajit_version[:3] not in nginx_luajit_check.stdout
 
 - name: NGINX | Build luaJIT
   make:
-    chdir: "{{ nginx_download_dir }}/luajit2-{{ luajit_version }}"
+    chdir: "{{ nginx_download_dir }}/luajit2-{{ nginx_luajit_version }}"
     target: install
   when: nginx_force_reinstall or
-        luajit_check is failed or
-        "LuaJIT " + luajit_version[:3] not in luajit_check.stdout
+        nginx_luajit_check is failed or
+        "LuaJIT " + nginx_luajit_version[:3] not in nginx_luajit_check.stdout
