@@ -28,18 +28,10 @@ http {
     keepalive_timeout {{ nginx_keepalive_timeout }};
     keepalive_requests {{ nginx_keepalive_requests }};
     reset_timedout_connection on;
-{% if nginx_proxy_buffering  is defined %}
     proxy_buffering {{ nginx_proxy_buffering }};
-{% endif %}
-{% if nginx_proxy_buffer_size is defined  %}
     proxy_buffer_size {{nginx_proxy_buffer_size }};
-{% endif %}
-{% if nginx_proxy_buffers is defined  %}
     proxy_buffers {{ nginx_proxy_buffers }};
-{% endif %}
-{% if nginx_proxy_busy_buffers_size is defined %}
     proxy_busy_buffers_size {{ nginx_proxy_busy_buffers_size }};
-{% endif %}
 
     gzip on;
     gzip_comp_level 2;
