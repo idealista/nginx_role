@@ -28,9 +28,10 @@ http {
     keepalive_timeout {{ nginx_keepalive_timeout }};
     keepalive_requests {{ nginx_keepalive_requests }};
     reset_timedout_connection on;
-
-    proxy_buffering on;
-    proxy_buffers 8 4k;
+    proxy_buffering {{ nginx_proxy_buffering }};
+    proxy_buffer_size {{nginx_proxy_buffer_size }};
+    proxy_buffers {{ nginx_proxy_buffers }};
+    proxy_busy_buffers_size {{ nginx_proxy_busy_buffers_size }};
 
     gzip on;
     gzip_comp_level 2;

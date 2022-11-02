@@ -70,7 +70,7 @@
     chdir: "{{ nginx_src_dir }}/nginx-{{ nginx_version }}"
   environment:
     LUAJIT_LIB: /usr/local/lib
-    LUAJIT_INC: "{{ '/usr/local/include/luajit-' + luaJIT_version[:3] }}"
+    LUAJIT_INC: "{{ '/usr/local/include/luajit-' + nginx_luajit_version[:3] }}"
   when: nginx_force_reinstall or
         nginx_check is failed or
         "nginx/" + nginx_version not in nginx_check.stderr
