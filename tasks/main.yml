@@ -4,7 +4,7 @@
   import_tasks: dependencies.yml
   when:
     - nginx_prometheus_metrics_enabled
-    - luaJIT_version is defined
+    - nginx_luajit_version is defined
   tags:
     - nginx-dependencies
 

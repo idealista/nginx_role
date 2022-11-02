@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+### Added
+- *[#114](https://github.com/idealista/nginx_role/issues/114) Updated nginx.conf template adding proxy buffer vars* @frantsao
+- *[#114](https://github.com/idealista/nginx_role/issues/114) BREAKING revert proxy buffering defaults to <2.0 release. They are safer in general, but suboptimal (see Nginx documentation)* @frantsao
+- *[#114](https://github.com/idealista/nginx_role/issues/114) fix files and directories permissions; RENAMED luaJIT_ variables to nginx_luajit_ because naming compliance (BREAKING) * @frantsao
 
 ## [4.2.1](https://github.com/idealista/nginx_role/tree/4.2.1) (2022-09-01)
 [Full Changelog](https://github.com/idealista/nginx_role/compare/4.2.0...4.2.1)
