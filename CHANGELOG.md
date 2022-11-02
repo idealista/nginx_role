@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nginx_role/tree/develop)
+
+## [5.0.0](https://github.com/idealista/nginx_role/tree/5.0.0) (2022-11-02)
 ### Added
 - *[#114](https://github.com/idealista/nginx_role/issues/114) Updated nginx.conf template adding proxy buffer vars* @frantsao
 - *[#114](https://github.com/idealista/nginx_role/issues/114) BREAKING revert proxy buffering defaults to <2.0 release. They are safer in general, but suboptimal (see Nginx documentation)* @frantsao

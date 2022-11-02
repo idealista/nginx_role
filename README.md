@@ -35,7 +35,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
 - src: idealista.nginx_role
-  version: 4.1.0
+  version: 5.0.0
   name: nginx
 ```
 
