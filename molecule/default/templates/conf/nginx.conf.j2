@@ -49,4 +49,43 @@ http {
     include {{ nginx_conf_path }}/sites-enabled/*;
 
     include {{ nginx_conf_path }}/extra-conf/*;
+
+    stream {
+
+        lua_shared_dict prometheus_metrics_stream 10M;
+        {%- set lua_package_list = [] -%}
+        {%- for plugin in nginx_lua_external_dependencies -%}
+            {{ lua_package_list.append(nginx_conf_path + '/plugins/' + plugin.name + '-' + plugin.version + '/lib/?.lua') }}
+        {%- endfor -%}
+        {{ lua_package_list.append(nginx_conf_path + '/plugins/?.lua;;') }}
+        lua_package_path "{{ lua_package_list | join(';') }}"
+
+        init_by_lua_block {
+            prometheus = require("prometheus").init("prometheus_metrics_stream")
+            metric_requests = prometheus:counter("nginx_http_requests_total", "Number of HTTP requests", {"test"})
+            metric_connections = prometheus:gauge("nginx_http_connections", "Number of HTTP connections", {"test"})
+        }
+        log_by_lua_block {
+            metric_requests:inc(1, {"test"})
+            metric_connections:set(1, {"test"})
+        }
+
+        server {
+            listen      8000;
+
+            content_by_lua_block {
+                local sock = assert(ngx.req.socket(true))
+                local data = sock:receive()
+                local location = "GET /metrics"
+                if string.sub(data, 1, string.len(location)) == location then
+                    ngx.say("HTTP/1.1 200 OK")
+                    ngx.say("Content-Type: text/plain")
+                    ngx.say("")
+                    ngx.say(table.concat(prometheus:metric_data(), ""))
+                else
+                    ngx.say("HTTP/1.1 404 Not Found")
+                end
+            }
+        }
+}
 }

@@ -1,6 +1,11 @@
 # PROMETHEUS METRIC
 lua_shared_dict prometheus_metrics 10M;
-lua_package_path "{{ nginx_conf_path }}/plugins/prometheus.lua";
+{%- set lua_package_list = [] -%}
+{%- for plugin in nginx_lua_external_dependencies -%}
+    {{ lua_package_list.append(nginx_conf_path + '/plugins/' + plugin.name + '-' + plugin.version + '/lib/?.lua') }}
+{%- endfor -%}
+{{ lua_package_list.append(nginx_conf_path + '/plugins/?.lua;;') }}
+lua_package_path "{{ lua_package_list | join(';') }}"
 
 init_by_lua_block {
     prometheus = require("prometheus").init("prometheus_metrics")
